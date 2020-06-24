@@ -1,30 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# estev.ao
+> :link: A short and simple redirecting service
 
-## Getting Started
+## :rocket: Getting Started
 
-First, run the development server:
+These instructions will get you a copy of the project up and running on your
+local machine for development and testing purposes.
+
+Start by filling out the environment variables defined in the `.env` file. Use
+the `.env.sample` as a starting point.
 
 ```bash
-npm run dev
-# or
-yarn dev
+cp .env.sample .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### :inbox_tray: Prerequisites
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The following software is required to be installed on your system:
 
-## Learn More
+- [nodejs](https://nodejs.org/en/download/)
 
-To learn more about Next.js, take a look at the following resources:
+Install all dependencies using `npm install`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### :hammer: Development
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Starting the development server.
 
-## Deploy on Vercel
+```
+npm run develop
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Running tests.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
+npm run test
+```
+
+Lint your code.
+
+```
+npm run lint
+```
+
+Format your code.
+
+```
+npm run format
+```
+
