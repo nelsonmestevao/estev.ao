@@ -8,6 +8,8 @@ export default () => {
   const [link, setLink] = useState('');
 
   const submit = async (event) => {
+    if(!url) return;
+
     const response = await (
       await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/links`, {
         method: 'POST',
