@@ -2,9 +2,13 @@
 
 .hero {
   background-color: #0040c1;
-  height: 100vh;
+  height: 70vh;
+  padding-top: 30vh;
   overflow: hidden;
   font-family: 'Montserrat', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cube {

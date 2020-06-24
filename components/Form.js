@@ -30,8 +30,9 @@ export default () => {
         <input
           className={styles.url}
           type="text"
+          name="url"
           placeholder="Type your url..."
-          aria-label="URL"
+          aria-label="Enter an URL to shorten"
           value={url}
           onChange={(event) => setUrl(event.target.value)}
         />
@@ -41,7 +42,9 @@ export default () => {
       </form>
       {link && (
         <div className={styles.result}>
-          <span className={styles.link}>{link}</span>
+          <a className={styles.link} href={link}>
+            {link.split('://')[1]}
+          </a>
           <button
             className={styles.copy}
             onClick={() => navigator.clipboard.writeText(`${link}`)}

@@ -1,26 +1,33 @@
 .form {
   width: 100%;
-  text-align: center;
-  margin: 20px auto;
-  font-size: 30px;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0.4rem;
 }
 
 .url {
-  margin-right: 20px;
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 16px;
+  margin: 0.5rem;
+  border-radius: 4px;
 }
 
 .submit {
-  cursor: pointer;
   outline: none;
-  margin-left: 20px;
   border-radius: 22px;
-  padding: 5px 40px;
   background: transparent;
   border-style: solid;
   border-color: white;
   color: #003298;
   background-color: white;
   text-transform: uppercase;
+  width: 150px;
+  padding: 0.6rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
 }
 
 .submit:hover {
@@ -31,33 +38,16 @@
 }
 
 .result {
-  color: white;
-  width: 100%;
-  text-align: center;
-  margin: 20px auto;
+  composes: form;
 }
 
 .link {
-  margin-right: 20px;
+  composes: url;
+  color: white;
+  text-decoration: underline;
+  font-family: monospace;
 }
 
 .copy {
-  cursor: pointer;
-  outline: none;
-  margin-left: 20px;
-  border-radius: 22px;
-  padding: 5px 35px;
-  background: transparent;
-  border-style: solid;
-  border-color: white;
-  color: #003298;
-  background-color: white;
-  text-transform: uppercase;
-}
-
-.copy:hover {
-  color: white;
-  background: #003298;
-  border-color: #003298;
-  transition: all 0.2s linear;
+  composes: submit;
 }
