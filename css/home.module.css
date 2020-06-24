@@ -1,0 +1,21 @@
+.color {
+  color: #fff;
+}
+
+.center {
+  composes: color;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  composes: center;
+  margin: 250px auto 20px;
+  font-size: 50px;
+}
+
+.description {
+  composes: center;
+  margin: 20px auto;
+  font-size: 30px;
+}
