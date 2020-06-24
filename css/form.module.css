@@ -44,6 +44,7 @@
 .link {
   composes: url;
   color: white;
+  font-size: 18px;
   text-decoration: underline;
   font-family: monospace;
 }
