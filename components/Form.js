@@ -8,7 +8,7 @@ export default () => {
   const [link, setLink] = useState('');
 
   const submit = async (event) => {
-    if(!url) return;
+    if (!url) return;
 
     const response = await (
       await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/links`, {
@@ -28,7 +28,13 @@ export default () => {
 
   return (
     <>
-      <form className={styles.form}>
+      <form
+        className={styles.form}
+        onSubmit={(event) => {
+          event.preventDefault();
+          submit(event);
+        }}
+      >
         <input
           className={styles.url}
           type="text"
