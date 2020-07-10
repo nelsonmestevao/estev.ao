@@ -1,0 +1,11 @@
+.code {
+  color: #fff;
+  font-size: 100px;
+  z-index: 2;
+}
+
+.description {
+  color: #eee;
+  font-style: italic;
+  z-index: 2;
+}

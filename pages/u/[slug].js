@@ -1,14 +1,24 @@
+import React from 'react';
+import Layout from '../../layouts/Layout';
+import Error from '../../components/Error';
+
 import 'isomorphic-fetch';
 
-export default function Slug() {}
+export default function Slug() {
+  return (
+    <Layout>
+      <Error code={404} description="Slug not found" />
+    </Layout>
+  );
+}
 
-Slug.getInitialProps = async ({ req, res }) => {
-  const slug = req.url.split('/u/')[1];
+Slug.getInitialProps = async ({ res, query }) => {
+  const { slug } = query;
   const { url } = await (
-    await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/links/${slug}`)
+    await fetch(`http://localhost:3000/api/links/${slug}`)
   ).json();
 
-  if (res) {
+  if (url) {
     res.writeHead(301, {
       Location: url,
     });
