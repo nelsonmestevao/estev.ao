@@ -15,7 +15,7 @@ export default function Slug() {
 Slug.getInitialProps = async ({ res, query }) => {
   const { slug } = query;
   const { url } = await (
-    await fetch(`http://localhost:3000/api/links/${slug}`)
+    await fetch(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/links/${slug}`)
   ).json();
 
   if (url) {
