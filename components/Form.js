@@ -6,12 +6,15 @@ import styles from '../css/form.module.css';
 export default () => {
   const [url, setUrl] = useState('');
   const [link, setLink] = useState('');
+  const [error, setError] = useState('');
 
   const submit = async (event) => {
     if (!url) return;
+    setLink('');
+    setError('');
 
     const response = await (
-      await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/links`, {
+      await fetch(`/api/links`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -21,8 +24,15 @@ export default () => {
       })
     ).json();
 
-    setLink(response.link);
-    setUrl('');
+    if (response.slug) {
+      setLink(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/u/${response.slug}`);
+      setUrl('');
+    }
+
+    if (response.error) {
+      setError(response.error.message || 'Something went wrong :(');
+    }
+
     event.preventDefault();
   };
 
@@ -60,6 +70,11 @@ export default () => {
           >
             Copy
           </button>
+        </div>
+      )}
+      {error && (
+        <div className={styles.result}>
+          <p className={styles.error}>{error}</p>
         </div>
       )}
     </>

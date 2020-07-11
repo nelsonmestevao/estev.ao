@@ -5,6 +5,7 @@
   flex-direction: row;
   align-items: center;
   padding: 0.4rem;
+  z-index: 2;
 }
 
 .url {
@@ -51,4 +52,9 @@
 
 .copy {
   composes: submit;
+}
+
+.error {
+  color: yellow;
+  margin: auto;
 }

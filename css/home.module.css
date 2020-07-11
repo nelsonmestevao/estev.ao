@@ -2,6 +2,7 @@
   color: #fff;
   margin: 0.5rem auto;
   text-align: center;
+  z-index: 2;
 }
 
 .title {
