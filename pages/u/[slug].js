@@ -15,13 +15,13 @@ export default function Slug({ code, message }) {
 Slug.getInitialProps = async ({ res, query }) => {
   const { slug } = query;
   const { url } = await (
-    await fetch(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/links/${slug}`)
-  )
-    .json()
-    .catch((error) => {
-      console.error(error);
-      return { code: 500, message: "I don't know what happened" };
-    });
+    await (
+      await fetch(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/links/${slug}`)
+    ).json()
+  ).catch((error) => {
+    console.error(error);
+    return { code: 500, message: "I don't know what happened" };
+  });
 
   if (url) {
     res.writeHead(301, {
