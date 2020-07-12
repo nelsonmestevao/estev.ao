@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import 'isomorphic-fetch';
+
+import API from '../utils/API';
 
 import styles from '../css/form.module.css';
 
@@ -7,31 +8,36 @@ export default () => {
   const [url, setUrl] = useState('');
   const [link, setLink] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const submit = async (event) => {
     if (!url) return;
     setLink('');
     setError('');
+    setLoading(true);
 
-    const response = await (
-      await fetch(`/api/links`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ url }),
+    const response = await API.post(`/links`, { url })
+      .then((response) => {
+        return response;
       })
-    ).json();
+      .catch((error) => {
+        return error.response;
+      });
 
-    if (response.slug) {
-      setLink(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/u/${response.slug}`);
+    if (response.data.error) {
+      setError(
+        `${response.data.error?.message || response.statusText} (Error code: ${
+          response.status
+        })`,
+      );
+    }
+
+    if (response.data.slug) {
+      setLink(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/u/${response.data.slug}`);
       setUrl('');
     }
 
-    if (response.error) {
-      setError(response.error.message || 'Something went wrong :(');
-    }
+    setLoading(false);
 
     event.preventDefault();
   };
@@ -58,19 +64,23 @@ export default () => {
           Go
         </button>
       </form>
-      {link && (
-        <div className={styles.result}>
-          <a className={styles.link} href={link}>
-            {link.split('://')[1]}
-          </a>
-          <button
-            className={styles.copy}
-            onClick={() => navigator.clipboard.writeText(`${link}`)}
-            type="button"
-          >
-            Copy
-          </button>
-        </div>
+      {loading ? (
+        <div className={styles.loading}>Loading...</div>
+      ) : (
+        link && (
+          <div className={styles.result}>
+            <a className={styles.link} href={link}>
+              {link.split('://')[1]}
+            </a>
+            <button
+              className={styles.copy}
+              onClick={() => navigator.clipboard.writeText(`${link}`)}
+              type="button"
+            >
+              Copy
+            </button>
+          </div>
+        )
       )}
       {error && (
         <div className={styles.result}>
