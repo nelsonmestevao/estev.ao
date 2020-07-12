@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '../../layouts/Layout';
 import Error from '../../components/Error';
 
-import 'isomorphic-fetch';
+import API from '../../utils/API';
 
 export default function Slug({ code, message }) {
   return (
@@ -14,14 +14,15 @@ export default function Slug({ code, message }) {
 
 Slug.getInitialProps = async ({ res, query }) => {
   const { slug } = query;
-  const { url } = await (
-    await (
-      await fetch(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/api/links/${slug}`)
-    ).json()
-  ).catch((error) => {
-    console.error(error);
-    return { code: 500, message: "I don't know what happened" };
-  });
+  const response = await API.get(`/links/${slug}`)
+    .then((response) => {
+      return response;
+    })
+    .catch((error) => {
+      return error.response;
+    });
+
+  const { url } = response.data;
 
   if (url) {
     res.writeHead(301, {
@@ -30,5 +31,8 @@ Slug.getInitialProps = async ({ res, query }) => {
     res.end();
   }
 
-  return { code: 404, message: 'Slug not found' };
+  return {
+    code: response.status,
+    message: response.data?.error?.message || response.statusText,
+  };
 };
