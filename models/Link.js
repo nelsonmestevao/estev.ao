@@ -11,7 +11,7 @@ mongoose.connect(URI, {
 const db = mongoose.connection;
 
 db.once('open', () => {
-  console.log('Database connected:', URI);
+  console.log('Database connected:', db.host);
 });
 
 db.on('error', (err) => {

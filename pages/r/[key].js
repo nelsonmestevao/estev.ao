@@ -4,10 +4,10 @@ import Error from '../../components/Error';
 
 import redirects from '../../data/redirects.json';
 
-export default function Key() {
+export default function Key({ code, message }) {
   return (
     <Layout>
-      <Error code={404} description="Key not found" />
+      <Error code={code} description={message} />
     </Layout>
   );
 }
@@ -23,5 +23,5 @@ Key.getInitialProps = async ({ res, query }) => {
     res.end();
   }
 
-  return {};
+  return { code: 404, message: 'Key not found' };
 };
