@@ -6,6 +6,7 @@ import styles from '../css/form.module.css';
 
 export default () => {
   const [url, setUrl] = useState('');
+  const [slug, setSlug] = useState('');
   const [link, setLink] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export default () => {
     setError('');
     setLoading(true);
 
-    const response = await API.post(`/links`, { url })
+    const response = await API.post(`/links`, { url, slug })
       .then((response) => {
         return response;
       })
@@ -35,6 +36,7 @@ export default () => {
     if (response.data.slug) {
       setLink(`${process.env.NEXT_PUBLIC_APP_DOMAIN}/u/${response.data.slug}`);
       setUrl('');
+      setSlug('');
     }
 
     setLoading(false);
@@ -60,9 +62,20 @@ export default () => {
           value={url}
           onChange={(event) => setUrl(event.target.value)}
         />
-        <button className={styles.submit} onClick={submit} type="button">
-          Go
-        </button>
+        <div className={styles.wrapper}>
+          <input
+            className={styles.slug}
+            type="text"
+            name="slug"
+            placeholder="Optional slug..."
+            aria-label="Enter a custom slug"
+            value={slug}
+            onChange={(event) => setSlug(event.target.value)}
+          />
+          <button className={styles.submit} onClick={submit} type="button">
+            Go
+          </button>
+        </div>
       </form>
       {loading ? (
         <div className={styles.loading}>Loading...</div>

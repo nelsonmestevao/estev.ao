@@ -7,7 +7,7 @@ export default async (req, res) => {
   switch (method) {
     case 'POST':
       if (body?.url) {
-        const slug = nanoid(5);
+        const slug = body.slug || nanoid(5);
         const url = !/^https?:\/\//i.test(body.url)
           ? `http://${body.url}`
           : body.url;
@@ -19,6 +19,16 @@ export default async (req, res) => {
         ) {
           res.status(400).json({ error: { message: 'Invalid URL' } });
           break;
+        }
+
+        if (body.slug) {
+          await Link.findOne({ slug }).then((link) => {
+            if (link) {
+              res
+                .status(400)
+                .json({ error: { message: 'Slug already taken' } });
+            }
+          });
         }
 
         await new Link({ slug, url })
