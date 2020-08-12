@@ -1,0 +1,10 @@
+{
+    "github": {
+        "base_url": "https://github.com",
+        "username": "nelsonmestevao"
+    },
+    "gitlab": {
+        "base_url": "https://gitlab.com",
+        "username": "nelsonmestevao"
+    }
+}
