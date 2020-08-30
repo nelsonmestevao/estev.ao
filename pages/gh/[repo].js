@@ -1,14 +1,15 @@
+import Layout from '../../layouts/Layout';
+import Error from '../../components/Error';
+
 import { github } from '../../data/settings.json';
 
-export default function Repo() {
-  return (
-    <Layout>
-      <Error code={500} description="Something went wrong" />
-    </Layout>
-  );
-}
+export default () => (
+  <Layout>
+    <Error code={500} description="Something went wrong" />
+  </Layout>
+);
 
-Repo.getInitialProps = async ({ res, query }) => {
+export async function getServerSideProps({ res, query }) {
   const { repo } = query;
   const url = `${github.base_url}/${github.username}/${repo}`;
 
@@ -17,4 +18,5 @@ Repo.getInitialProps = async ({ res, query }) => {
   });
   res.end();
 
-};
+  return { props: {} };
+}

@@ -1,18 +1,15 @@
-import React from 'react';
 import Layout from '../../layouts/Layout';
 import Error from '../../components/Error';
 
 import redirects from '../../data/redirects.json';
 
-export default function Key({ code, message }) {
-  return (
-    <Layout>
-      <Error code={code} description={message} />
-    </Layout>
-  );
-}
+export default ({ code, message }) => (
+  <Layout>
+    <Error code={code} description={message} />
+  </Layout>
+);
 
-Key.getInitialProps = async ({ res, query }) => {
+export async function getServerSideProps({ res, query }) {
   const { key } = query;
   const url = redirects[key];
 
@@ -23,5 +20,10 @@ Key.getInitialProps = async ({ res, query }) => {
     res.end();
   }
 
-  return { code: 404, message: 'Key not found' };
-};
+  return {
+    props: {
+      code: 404,
+      message: 'Key not found',
+    },
+  };
+}

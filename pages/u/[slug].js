@@ -1,20 +1,17 @@
-import React from 'react';
 import Layout from '../../layouts/Layout';
 import Error from '../../components/Error';
 
 import API from '../../utils/API';
 
-export default function Slug({ code, message }) {
-  return (
-    <Layout>
-      <Error code={code} description={message} />
-    </Layout>
-  );
-}
+export default ({ code, message }) => (
+  <Layout>
+    <Error code={code} description={message} />
+  </Layout>
+);
 
-Slug.getInitialProps = async ({ res, query }) => {
-  const { slug } = query;
-  const response = await API.get(`/links/${slug}`)
+export async function getServerSideProps({ res, params }) {
+  const { slug } = params;
+  const reply = await await API.get(`/links/${slug}`)
     .then((response) => {
       return response;
     })
@@ -22,7 +19,7 @@ Slug.getInitialProps = async ({ res, query }) => {
       return error.response;
     });
 
-  const { url } = response.data;
+  const { url } = reply?.data;
 
   if (url) {
     res.writeHead(301, {
@@ -32,7 +29,9 @@ Slug.getInitialProps = async ({ res, query }) => {
   }
 
   return {
-    code: response.status,
-    message: response.data?.error?.message || response.statusText,
+    props: {
+      code: reply?.status,
+      message: reply?.data?.error?.message || reply?.statusText,
+    },
   };
-};
+}

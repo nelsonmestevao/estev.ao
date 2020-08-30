@@ -18,11 +18,11 @@ export default () => {
     setLoading(true);
 
     const response = await API.post(`/links`, { url, slug })
-      .then((response) => {
-        return response;
+      .then((reply) => {
+        return reply;
       })
-      .catch((error) => {
-        return error.response;
+      .catch((err) => {
+        return err.response;
       });
 
     if (response.data.error) {
