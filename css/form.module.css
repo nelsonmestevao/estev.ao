@@ -99,4 +99,5 @@
 
 .loading {
   color: white;
+  z-index: 2;
 }
