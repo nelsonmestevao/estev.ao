@@ -1,11 +1,11 @@
-import axios from 'axios';
+const axios = require('axios');
 
 const API = axios.create({
-  baseURL: `${process.env.NEXT_PUBLIC_APP_DOMAIN}/api`,
+  baseURL: `${process.env.DOMAIN}/api`,
   responseType: 'json',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
-export default API;
+module.exports = API;

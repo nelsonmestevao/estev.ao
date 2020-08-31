@@ -14,13 +14,6 @@ export default function Slug({ code, message }) {
 
 Slug.getInitialProps = async ({ res, query }) => {
   const { slug } = query;
-  const response = await API.get(`/links/${slug}`)
-    .then((response) => {
-      return response;
-    })
-    .catch((error) => {
-      return error.response;
-    });
 
   const { url } = response.data;
 
