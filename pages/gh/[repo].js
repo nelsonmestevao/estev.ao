@@ -16,5 +16,4 @@ Repo.getInitialProps = async ({ res, query }) => {
     Location: url,
   });
   res.end();
-
 };
