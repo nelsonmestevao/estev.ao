@@ -4,6 +4,7 @@ import Error from '../components/Error';
 
 const links = {
   bio: 'https://nelsonmestevao.keybase.pub',
+  avatar: 'https://nelsonmestevao.keybase.pub/img/profile.png',
 };
 
 export default function Key({ code, message }) {
