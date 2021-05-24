@@ -1,49 +1,20 @@
-# estev.ao
+# Estevao
 
-> :link: A short and simple redirecting service
+To start your Phoenix server:
 
-## :rocket: Getting Started
+  * Install dependencies with `mix deps.get`
+  * Create and migrate your database with `mix ecto.setup`
+  * Install Node.js dependencies with `npm install` inside the `assets` directory
+  * Start Phoenix endpoint with `mix phx.server`
 
-These instructions will get you a copy of the project up and running on your
-local machine for development and testing purposes.
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Start by filling out the environment variables defined in the `.env` file. Use
-the `.env.sample` as a starting point.
+Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
 
-```bash
-cp .env.sample .env
-```
+## Learn more
 
-### :inbox_tray: Prerequisites
-
-The following software is required to be installed on your system:
-
-- [nodejs](https://nodejs.org/en/download/)
-
-Install all dependencies using `npm install`.
-
-### :hammer: Development
-
-Starting the development server.
-
-```
-npm run develop
-```
-
-Running tests.
-
-```
-npm run test
-```
-
-Lint your code.
-
-```
-npm run lint
-```
-
-Format your code.
-
-```
-npm run format
-```
+  * Official website: https://www.phoenixframework.org/
+  * Guides: https://hexdocs.pm/phoenix/overview.html
+  * Docs: https://hexdocs.pm/phoenix
+  * Forum: https://elixirforum.com/c/phoenix-forum
+  * Source: https://github.com/phoenixframework/phoenix
