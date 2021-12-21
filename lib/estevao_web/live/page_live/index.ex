@@ -1,4 +1,4 @@
-defmodule EstevaoWeb.PageLive do
+defmodule EstevaoWeb.PageLive.Index do
   use EstevaoWeb, :live_view
 
   alias Estevao.Shortner

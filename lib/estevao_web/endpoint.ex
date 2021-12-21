@@ -7,12 +7,8 @@ defmodule EstevaoWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_estevao_key",
-    signing_salt: "XZ4CuqAa"
+    signing_salt: "ffIwVDvY"
   ]
-
-  socket "/socket", EstevaoWeb.UserSocket,
-    websocket: true,
-    longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
@@ -24,7 +20,7 @@ defmodule EstevaoWeb.Endpoint do
     at: "/",
     from: :estevao,
     gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt site.webmanifest)
+    only: ~w(assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

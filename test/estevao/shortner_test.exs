@@ -6,18 +6,9 @@ defmodule Estevao.ShortnerTest do
   describe "links" do
     alias Estevao.Shortner.Link
 
-    @valid_attrs %{slug: "example", url: "https://example.com"}
-    @update_attrs %{slug: "short", url: "https://exemplo.pt", visits: 43}
-    @invalid_attrs %{slug: nil, url: nil, visits: 10}
+    import Estevao.ShortnerFixtures
 
-    def link_fixture(attrs \\ %{}) do
-      {:ok, link} =
-        attrs
-        |> Enum.into(@valid_attrs)
-        |> Shortner.create_link()
-
-      link
-    end
+    @invalid_attrs %{slug: nil, url: nil, visits: nil}
 
     test "list_links/0 returns all links" do
       link = link_fixture()
@@ -30,10 +21,12 @@ defmodule Estevao.ShortnerTest do
     end
 
     test "create_link/1 with valid data creates a link" do
-      assert {:ok, %Link{} = link} = Shortner.create_link(@valid_attrs)
-      assert link.slug == "example"
-      assert link.url == "https://example.com"
-      assert link.visits == 0
+      valid_attrs = %{slug: "some slug", url: "some url", visits: 42}
+
+      assert {:ok, %Link{} = link} = Shortner.create_link(valid_attrs)
+      assert link.slug == "some slug"
+      assert link.url == "some url"
+      assert link.visits == 42
     end
 
     test "create_link/1 with invalid data returns error changeset" do
@@ -42,9 +35,11 @@ defmodule Estevao.ShortnerTest do
 
     test "update_link/2 with valid data updates the link" do
       link = link_fixture()
-      assert {:ok, %Link{} = link} = Shortner.update_link(link, @update_attrs)
-      assert link.slug == "short"
-      assert link.url == "https://exemplo.pt"
+      update_attrs = %{slug: "some updated slug", url: "some updated url", visits: 43}
+
+      assert {:ok, %Link{} = link} = Shortner.update_link(link, update_attrs)
+      assert link.slug == "some updated slug"
+      assert link.url == "some updated url"
       assert link.visits == 43
     end
 

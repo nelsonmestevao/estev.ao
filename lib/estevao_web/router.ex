@@ -17,7 +17,14 @@ defmodule EstevaoWeb.Router do
   scope "/", EstevaoWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", PageLive.Index, :index
+
+    live "/links", LinkLive.Index, :index
+    live "/links/new", LinkLive.Index, :new
+    live "/links/:id/edit", LinkLive.Index, :edit
+
+    live "/links/:id", LinkLive.Show, :show
+    live "/links/:id/show/edit", LinkLive.Show, :edit
 
     get "/r/:slug", LinkController, :redirect_to
     get "/r/:slug/stats", LinkController, :show
@@ -42,7 +49,20 @@ defmodule EstevaoWeb.Router do
 
     scope "/" do
       pipe_through :browser
+
       live_dashboard "/dashboard", metrics: EstevaoWeb.Telemetry
+    end
+  end
+
+  # Enables the Swoosh mailbox preview in development.
+  #
+  # Note that preview only shows emails that were sent by the same
+  # node running the Phoenix server.
+  if Mix.env() == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
 end

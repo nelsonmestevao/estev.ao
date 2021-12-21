@@ -1,0 +1,36 @@
+<h1 class="title">estev.ao</h1>
+<p class="description">A short and simple redirecting service</p>
+
+<.form
+  let={f}
+  for={@changeset}
+  id="link-form"
+  class="form",
+  phx-change="validate"
+  phx-submit="create">
+
+  <div class="input">
+    <%= text_input f, :url, class: "url", placeholder: "Type your url..." %>
+
+    <div class="wrapper">
+      <%= text_input f, :slug, class: "slug", placeholder: "Optional slug..." %>
+
+      <%= submit "Go", class: "submit", phx_disable_with: "Creating..." %>
+    </div>
+  </div>
+
+  <%= error_messages f, [:url, :slug] %>
+
+</.form>
+
+<%= if @result do %>
+<div class="result">
+  <a class="link" href={@result.link} >
+    <%= String.split(@result.link, "://") |> Enum.at(1) %>
+  </a>
+  <button class="copy" type="button" onclick={"navigator.clipboard.writeText('#{@result.link}')"}>
+      Copy
+  </button>
+</div>
+<% end %>
+

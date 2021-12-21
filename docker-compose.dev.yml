@@ -1,0 +1,28 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:13.2
+    container_name: estevao_db
+    env_file: .env.dev
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+      POSTGRES_HOST: ${DB_HOST:-localhost}
+      POSTGRES_PORT: ${DB_PORT:-5432}
+    volumes:
+      - /var/lib/postgresql/data
+  web:
+    container_name: estevao_web
+    env_file: .env.dev
+    environment:
+      MIX_ENV: ${MIX_ENV:-dev}
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+      - /app/_build
+      - /app/deps

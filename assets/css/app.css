@@ -1,0 +1,172 @@
+/* This file is for your main application CSS */
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:700');
+
+@import "./phoenix.css";
+@import "./cubes.css";
+
+body {
+	 margin: 0;
+	 padding: 0;
+}
+/* Layout */
+ .main {
+	 background-color: #0040c1;
+	 height: 70vh;
+	 padding-top: 30vh;
+	 overflow: hidden;
+	 font-family: 'Montserrat', sans-serif;
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+}
+/* Index */
+ .title {
+	 color: #fff;
+	 margin: 0.5rem auto;
+	 text-align: center;
+	 z-index: 2;
+	 font-size: 50px;
+}
+ .description {
+	 color: #fff;
+	 margin: 0.5rem auto;
+	 text-align: center;
+	 z-index: 2;
+	 font-size: 30px;
+}
+/* Form */
+ .form {
+	 width: 100%;
+	 max-width: 800px;
+	 display: block;
+	 z-index: 2;
+}
+
+.input {
+	 width: 100%;
+	 max-width: 800px;
+	 display: flex;
+	 flex-direction: row;
+	 align-items: center;
+	 padding: 0.4rem;
+	 z-index: 2;
+}
+
+ .url {
+	 width: 60%;
+	 padding: 0.5rem;
+	 font-size: 16px;
+	 margin: 0.5rem;
+	 border-radius: 4px;
+}
+ .wrapper {
+	 width: 40%;
+	 max-width: 800px;
+	 display: flex;
+	 flex-direction: row;
+	 align-items: center;
+	 z-index: 2;
+}
+ .slug {
+	 width: 40%;
+	 padding: 0.5rem;
+	 font-size: 16px;
+	 margin: 0.5rem;
+	 border-radius: 4px;
+}
+ .submit {
+	 outline: none;
+	 border-radius: 22px;
+	 background: transparent;
+	 border-style: solid;
+	 border-color: white;
+	 color: #003298;
+	 background-color: white;
+	 text-transform: uppercase;
+	 width: 150px;
+	 padding: 0.6rem;
+	 margin: 0 0.5rem;
+	 cursor: pointer;
+}
+ .submit:hover {
+	 color: white;
+	 background: #003298;
+	 border-color: #003298;
+	 transition: all 0.2s linear;
+}
+ @media only screen and (max-width: 960px) {
+	 .form {
+		 flex-wrap: wrap;
+	}
+	 .input {
+		 flex-wrap: wrap;
+	}
+	 .result {
+		 flex-wrap: nowrap;
+	}
+	 .url {
+		 width: 100%;
+	}
+	 .wrapper {
+		 width: 100%;
+	}
+	 .slug {
+		 width: 100%;
+	}
+}
+ .result {
+	 width: 100%;
+	 max-width: 800px;
+	 display: flex;
+	 flex-direction: row;
+	 align-items: center;
+	 padding: 0.4rem;
+	 z-index: 2;
+}
+ .link {
+	 width: 40%;
+	 padding: 0.5rem;
+	 font-size: 16px;
+	 margin: 0.5rem;
+	 border-radius: 4px;
+	 width: 100%;
+	 color: white;
+	 font-size: 18px;
+	 text-decoration: underline;
+	 font-family: monospace;
+}
+ .copy {
+	 outline: none;
+	 border-radius: 22px;
+	 background: transparent;
+	 border-style: solid;
+	 border-color: white;
+	 color: #003298;
+	 background-color: white;
+	 text-transform: uppercase;
+	 width: 150px;
+	 padding: 0.6rem;
+	 margin: 0 0.5rem;
+	 cursor: pointer;
+}
+ .copy:hover {
+	 color: white;
+	 background: #003298;
+	 border-color: #003298;
+	 transition: all 0.2s linear;
+}
+ .errors {
+	 width: 100%;
+	 max-width: 800px;
+	 display: flex;
+	 flex-direction: column;
+	 align-items: center;
+	 padding: 0.4rem;
+	 z-index: 2;
+}
+ .error {
+	 color: yellow;
+	 margin: auto;
+}
+ 

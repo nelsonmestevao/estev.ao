@@ -4,8 +4,6 @@ defmodule Estevao.Shortner.Link do
   @url_regex ~r/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
   @slug_alphabet "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-  @required_fields [:url]
-  @optional_fields [:slug]
   schema "links" do
     field :slug, :string
     field :url, :string
@@ -14,6 +12,8 @@ defmodule Estevao.Shortner.Link do
     timestamps()
   end
 
+  @required_fields [:url]
+  @optional_fields [:slug]
   @doc false
   def create_changeset(link, attrs) do
     link
@@ -24,10 +24,11 @@ defmodule Estevao.Shortner.Link do
     |> unique_constraint(:slug)
   end
 
+  @optional_fields [:slug, :visits]
   @doc false
   def changeset(link, attrs) do
     link
-    |> cast(attrs, @required_fields ++ @optional_fields ++ [:visits])
+    |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_format(:url, @url_regex)
     |> unique_constraint(:slug)

@@ -55,8 +55,6 @@ defmodule Estevao.Shortner do
     Repo.get_by(Link, attrs)
   end
 
-  def get_link(id), do: Repo.get(Link, id)
-
   @doc """
   Creates a link.
 
@@ -71,7 +69,7 @@ defmodule Estevao.Shortner do
   """
   def create_link(attrs \\ %{}) do
     %Link{}
-    |> Link.create_changeset(attrs)
+    |> Link.changeset(attrs)
     |> Repo.insert()
   end
 
