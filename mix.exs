@@ -2,11 +2,13 @@ defmodule Estevao.MixProject do
   use Mix.Project
 
   @version "1.0.0-dev"
+  @description "A short and simple redirecting service"
 
   def project do
     [
       app: :estevao,
       version: @version,
+      description: @description,
       elixir: "~> 1.13",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
