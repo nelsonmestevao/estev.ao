@@ -19,12 +19,7 @@ defmodule EstevaoWeb.Router do
 
     live "/", PageLive.Index, :index
 
-    live "/links", LinkLive.Index, :index
-    live "/links/new", LinkLive.Index, :new
-    live "/links/:id/edit", LinkLive.Index, :edit
-
-    live "/links/:id", LinkLive.Show, :show
-    live "/links/:id/show/edit", LinkLive.Show, :edit
+    live "/chat/:room_id", ChatLive.Show, :show
 
     get "/r/:slug", LinkController, :redirect_to
     get "/r/:slug/stats", LinkController, :show
