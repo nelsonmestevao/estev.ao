@@ -16,7 +16,7 @@ defmodule EstevaoWeb.PageLive.Index do
     changeset =
       %Link{}
       |> Shortner.change_link(link_params)
-      |> Map.put(:action, :insert)
+      |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, changeset: changeset)}
   end
