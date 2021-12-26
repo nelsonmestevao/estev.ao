@@ -6,7 +6,7 @@ defmodule Estevao.Repo.Migrations.CreateMessages do
       add :id, :binary_id, primary_key: true
       add :content, :string
       add :username, :string
-      add :room, :string
+      add :room_id, :string
 
       timestamps()
     end

@@ -55,7 +55,8 @@ defmodule Estevao.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:dotenvy, "~> 0.5.0", only: :dev},
-      {:nanoid, "~> 2.0.5"}
+      {:nanoid, "~> 2.0.5"},
+      {:mnemonic_slugs, "~> 0.0.3"}
     ]
   end
 

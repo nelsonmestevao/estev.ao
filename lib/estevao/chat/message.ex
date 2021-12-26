@@ -6,7 +6,7 @@ defmodule Estevao.Chat.Message do
   @foreign_key_type :binary_id
   schema "messages" do
     field :content, :string
-    field :room, :string
+    field :room_id, :string
     field :username, :string
 
     timestamps()
@@ -15,7 +15,7 @@ defmodule Estevao.Chat.Message do
   @doc false
   def changeset(message, attrs) do
     message
-    |> cast(attrs, [:content, :username, :room])
-    |> validate_required([:content])
+    |> cast(attrs, [:content, :username, :room_id])
+    |> validate_required([:content, :username, :room_id])
   end
 end
