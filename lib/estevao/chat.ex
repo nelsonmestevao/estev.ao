@@ -17,7 +17,15 @@ defmodule Estevao.Chat do
       [%Message{}, ...]
 
   """
-  def list_messages do
+  def list_messages(filters \\ %{})
+
+  def list_messages(%{"room_id" => room_id}) do
+    Message
+    |> where(room_id: ^room_id)
+    |> Repo.all()
+  end
+
+  def list_messages(_args) do
     Repo.all(Message)
   end
 

@@ -15,7 +15,7 @@ defmodule EstevaoWeb.ChatLive.Show do
     end
 
     changeset = Chat.change_message(%Message{})
-    messages = Chat.list_messages()
+    messages = Chat.list_messages(%{"room_id" => room_id})
 
     {:ok,
      assign(socket,
@@ -79,6 +79,9 @@ defmodule EstevaoWeb.ChatLive.Show do
 
   defp extract_initials(name) do
     initials = name |> String.upcase() |> String.split("-") |> Enum.map(&String.slice(&1, 0, 1))
-    List.first(initials) <> List.last(initials)
+    case length(initials) do
+      1 -> hd(initials)
+      2 -> List.first(initials) <> List.last(initials)
+    end
   end
 end

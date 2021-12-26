@@ -10,8 +10,8 @@
       </div>
       <div class="flex items-center space-x-2">
          <%= for username <- @online_users do %>
-            <span class="inline-flex items-center justify-center w-10 sm:w-16 h-10 sm:h-16 rounded-full bg-gray-500 order-1">
-               <span class="text-md sm:text-2xl font-medium leading-none text-white">
+            <span title={username} class="cursor-default inline-flex items-center justify-center w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gray-500 order-1">
+               <span class="text-md sm:text-xl font-medium leading-none text-white">
                   <%= extract_initials(username) %>
                </span>
             </span>
