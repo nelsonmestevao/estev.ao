@@ -7,11 +7,15 @@ defmodule EstevaoWeb.ChatLive.Show do
   @impl true
   def mount(%{"room_id" => room_id}, _session, socket) do
     topic = "room" <> room_id <> room_id
-    if connected?(socket), do: EstevaoWeb.Endpoint.subscribe(topic)
-
     username = MnemonicSlugs.generate_slug(2)
+
+    if connected?(socket) do
+      EstevaoWeb.Endpoint.subscribe(topic)
+      EstevaoWeb.Presence.track(self(), topic, username, %{})
+    end
+
     changeset = Chat.change_message(%Message{})
-    messages = Chat.list_messages()
+    messages = Chat.list_messages(%{"room_id" => room_id})
 
     {:ok,
      assign(socket,
@@ -19,6 +23,7 @@ defmodule EstevaoWeb.ChatLive.Show do
        room_id: room_id,
        username: username,
        topic: topic,
+       online_users: [],
        messages: messages
      )}
   end
@@ -60,8 +65,23 @@ defmodule EstevaoWeb.ChatLive.Show do
     {:noreply, assign(socket, messages: socket.assigns.messages ++ [message])}
   end
 
+  @impl true
+  def handle_info(%{event: "presence_diff", payload: %{joins: joins, leaves: leaves}}, socket) do
+    IO.inspect(joins)
+    IO.inspect(leaves)
+
+    online_users =
+      EstevaoWeb.Presence.list(socket.assigns.topic)
+      |> Map.keys()
+
+    {:noreply, assign(socket, online_users: online_users)}
+  end
+
   defp extract_initials(name) do
     initials = name |> String.upcase() |> String.split("-") |> Enum.map(&String.slice(&1, 0, 1))
-    List.first(initials) <> List.last(initials)
+    case length(initials) do
+      1 -> hd(initials)
+      2 -> List.first(initials) <> List.last(initials)
+    end
   end
 end

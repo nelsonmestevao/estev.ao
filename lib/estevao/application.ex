@@ -15,7 +15,8 @@ defmodule Estevao.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Estevao.PubSub},
       # Start the Endpoint (http/https)
-      EstevaoWeb.Endpoint
+      EstevaoWeb.Endpoint,
+      EstevaoWeb.Presence
       # Start a worker by calling: Estevao.Worker.start_link(arg)
       # {Estevao.Worker, arg}
     ]
