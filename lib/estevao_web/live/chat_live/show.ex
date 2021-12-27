@@ -83,6 +83,7 @@ defmodule EstevaoWeb.ChatLive.Show do
     case length(initials) do
       1 -> hd(initials)
       2 -> List.first(initials) <> List.last(initials)
+      _ -> List.first(initials) <> List.last(initials)
     end
   end
 end
