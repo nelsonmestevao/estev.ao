@@ -56,7 +56,7 @@ if config_env() == :prod do
       """
 
   host = System.get_env("PHX_HOST") || "estev.ao"
-  port = String.to_integer(System.get_env("PORT") || "4001")
+  port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :estevao, EstevaoWeb.Endpoint,
     url: [host: host, port: 443],
