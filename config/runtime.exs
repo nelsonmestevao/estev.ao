@@ -21,7 +21,8 @@ if config_env() in [:dev, :test] do
     password: System.get_env("DB_PASSWORD", "postgres"),
     # The MIX_TEST_PARTITION environment variable can be used
     # to provide built-in test partitioning in CI environment.
-    database: System.get_env("DB_NAME", "estevao_#{config_env()}#{System.get_env("MIX_TEST_PARTITION")}"),
+    database:
+      System.get_env("DB_NAME", "estevao_#{config_env()}#{System.get_env("MIX_TEST_PARTITION")}"),
     hostname: System.get_env("DB_HOST", "localhost"),
     port: System.get_env("DB_PORT", "5432")
 end

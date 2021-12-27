@@ -35,7 +35,12 @@ defmodule Estevao.ChatTest do
 
     test "update_message/2 with valid data updates the message" do
       message = message_fixture()
-      update_attrs = %{content: "some updated content", room: "some updated room", username: "some updated username"}
+
+      update_attrs = %{
+        content: "some updated content",
+        room: "some updated room",
+        username: "some updated username"
+      }
 
       assert {:ok, %Message{} = message} = Chat.update_message(message, update_attrs)
       assert message.content == "some updated content"

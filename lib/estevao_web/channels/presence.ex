@@ -5,6 +5,7 @@ defmodule EstevaoWeb.Presence do
   See the [`Phoenix.Presence`](https://hexdocs.pm/phoenix/Phoenix.Presence.html)
   docs for more details.
   """
-  use Phoenix.Presence, otp_app: :estevao,
-                        pubsub_server: Estevao.PubSub
+  use Phoenix.Presence,
+    otp_app: :estevao,
+    pubsub_server: Estevao.PubSub
 end
