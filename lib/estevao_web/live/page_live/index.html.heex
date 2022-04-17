@@ -1,43 +1,35 @@
-<main class="main z[-15] h-3/5 pt-80 flex flex-col items-center">
+<div class="main z[-15] h-3/5 pt-80 flex flex-col items-center">
   <h1 class="mx-auto my-2 text-white text-center text-5xl font-bold z-10">estev.ao</h1>
   <p class="mx-auto my-2 text-white text-center text-3xl font-bold z-10">A short and simple redirecting service</p>
 
-  <.form
-    let={f}
-    for={@changeset}
-    id="link-form"
-    class="form"
-    phx-change="validate"
-    phx-submit="create">
-
+  <.form let={f} for={@changeset} id="link-form" class="form" phx-change="validate" phx-submit="create">
     <div class="input">
-      <%= text_input f, :url, class: "url", placeholder: "Type your url..." %>
+      <%= text_input(f, :url, class: "url", placeholder: "Type your url...") %>
 
       <div class="wrapper">
-        <%= text_input f, :slug, class: "slug", placeholder: "Optional slug..." %>
+        <%= text_input(f, :slug, class: "slug", placeholder: "Optional slug...") %>
 
-        <%= submit "Go", class: "submit", phx_disable_with: "Creating..." %>
+        <%= submit("Go", class: "submit", phx_disable_with: "Creating...") %>
       </div>
     </div>
 
-    <%= error_messages f, [:url, :slug] %>
-
+    <%= error_messages(f, [:url, :slug]) %>
   </.form>
 
   <%= if @result do %>
-  <div class="result">
-    <a class="link" href={@result.link} >
-      <%= String.split(@result.link, "://") |> Enum.at(1) %>
-    </a>
-    <button class="copy" type="button" onclick={"navigator.clipboard.writeText('#{@result.link}')"}>
+    <div class="result">
+      <a class="link" href={@result.link}>
+        <%= String.split(@result.link, "://") |> Enum.at(1) %>
+      </a>
+      <button class="copy" type="button" onclick={"navigator.clipboard.writeText('#{@result.link}')"}>
         Copy
-    </button>
-  </div>
+      </button>
+    </div>
   <% end %>
-</main>
+</div>
 
 <ul class="background z-[-10]">
-<%= for _ <- 1..40 do %>
-  <li class="cube"></li>
-<% end %>
+  <%= for _ <- 1..40 do %>
+    <li class="cube"></li>
+  <% end %>
 </ul>

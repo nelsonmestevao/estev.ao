@@ -54,7 +54,7 @@ defmodule Estevao.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:dotenvy, "~> 0.5.0", runtime: Mix.env() == :dev},
+      {:dotenvy, "~> 0.6.0", runtime: Mix.env() == :dev},
       {:nanoid, "~> 2.0.5"},
       {:mnemonic_slugs, "~> 0.0.3"}
     ]

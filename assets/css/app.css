@@ -1,5 +1,4 @@
 /* This file is for your main application CSS */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,12 +6,6 @@
 /* Layout */
  .main {
 	 background-color: #0040c1;
-	 /* height: 70vh; */
-	 /* padding-top: 30vh; */
-	 /* overflow: hidden; */
-	 /* display: flex; */
-	 /* flex-direction: column; */
-	 /* align-items: center; */
 }
 
 /* Form */
@@ -193,92 +186,92 @@
 	 border-color: #0046d4;
 }
  .background li:nth-child(1) {
-	 animation-delay: 2s;
+	 animation-delay: 1s;
 	 left: 8vw;
 	 top: 64vh;
 }
  .background li:nth-child(2) {
-	 animation-delay: 4s;
+	 animation-delay: 2s;
 	 left: 91vw;
 	 top: 7vh;
 }
  .background li:nth-child(3) {
-	 animation-delay: 6s;
+	 animation-delay: 4s;
 	 left: 11vw;
 	 top: 67vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(4) {
-	 animation-delay: 8s;
+	 animation-delay: 5s;
 	 left: 44vw;
 	 top: 44vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(5) {
-	 animation-delay: 10s;
+	 animation-delay: 8s;
 	 left: 40vw;
 	 top: 83vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(6) {
-	 animation-delay: 12s;
+	 animation-delay: 9s;
 	 left: 36vw;
 	 top: 90vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(7) {
-	 animation-delay: 14s;
+	 animation-delay: 10s;
 	 left: 4vw;
 	 top: 40vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(8) {
-	 animation-delay: 16s;
+	 animation-delay: 12s;
 	 left: 57vw;
 	 top: 85vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(9) {
-	 animation-delay: 18s;
+	 animation-delay: 14s;
 	 left: 64vw;
 	 top: 17vh;
 }
  .background li:nth-child(10) {
-	 animation-delay: 20s;
+	 animation-delay: 16s;
 	 left: 1vw;
 	 top: 88vh;
 }
  .background li:nth-child(11) {
-	 animation-delay: 22s;
+	 animation-delay: 18s;
 	 left: 98vw;
 	 top: 37vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(12) {
-	 animation-delay: 24s;
+	 animation-delay: 20s;
 	 left: 81vw;
 	 top: 65vh;
 }
  .background li:nth-child(13) {
-	 animation-delay: 26s;
+	 animation-delay: 22s;
 	 left: 92vw;
 	 top: 45vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(14) {
-	 animation-delay: 28s;
+	 animation-delay: 24s;
 	 left: 78vw;
 	 top: 53vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(15) {
-	 animation-delay: 30s;
+	 animation-delay: 26s;
 	 left: 34vw;
 	 top: 76vh;
 	 border-color: #0046d4;
 }
  .background li:nth-child(16) {
-	 animation-delay: 32s;
+	 animation-delay: 28s;
 	 left: 17vw;
 	 top: 72vh;
 }

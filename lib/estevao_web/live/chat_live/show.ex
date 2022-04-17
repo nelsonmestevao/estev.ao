@@ -6,7 +6,7 @@ defmodule EstevaoWeb.ChatLive.Show do
 
   @impl true
   def mount(%{"room_id" => room_id}, _session, socket) do
-    topic = "room" <> room_id <> room_id
+    topic = "room:" <> room_id
     username = MnemonicSlugs.generate_slug(2)
 
     if connected?(socket) do
