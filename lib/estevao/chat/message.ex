@@ -1,9 +1,6 @@
 defmodule Estevao.Chat.Message do
-  use Ecto.Schema
-  import Ecto.Changeset
+  use Estevao.Schema
 
-  @primary_key {:id, :binary_id, autogenerate: true}
-  @foreign_key_type :binary_id
   schema "messages" do
     field :room_id, :string
     field :username, :string
