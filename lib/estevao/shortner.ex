@@ -69,7 +69,7 @@ defmodule Estevao.Shortner do
   """
   def create_link(attrs \\ %{}) do
     %Link{}
-    |> Link.changeset(attrs)
+    |> Link.create_changeset(attrs)
     |> Repo.insert()
   end
 
