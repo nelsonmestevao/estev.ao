@@ -4,6 +4,7 @@ defmodule Estevao.Shortner.Link do
   @url_regex ~r/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()!@:%_\+.~#?&\/\/=]*)/
   @slug_alphabet "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
 
+  @derive {Phoenix.Param, key: :slug}
   schema "links" do
     field :slug, :string
     field :url, :string
@@ -167,6 +168,12 @@ defmodule Estevao.Shortner.Link do
     |> validate_required(@required_fields)
     |> validate_format(:url, @url_regex)
     |> unique_constraint(:slug)
+  end
+
+  alias EstevaoWeb.Router.Helpers, as: Routes
+
+  def link(link) do
+    Routes.link_url(EstevaoWeb.Endpoint, :redirect_to, link)
   end
 
   defp generate_slug(%Ecto.Changeset{valid?: true, changes: changes} = changeset)
