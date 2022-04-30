@@ -12,6 +12,140 @@ defmodule Estevao.Shortner.Link do
     timestamps()
   end
 
+  @databases ~w(
+    arangodb
+    cassandra
+    couchdb
+    elasticsearch
+    faunadb
+    hbase
+    hive
+    mongodb
+    mysql
+    neo4j
+    postgres
+    redis
+    sqlite
+    sqlserver
+    supabase
+  )
+  @tools ~w(
+    audacity
+    bash
+    dbbrowser
+    dbeaver
+    docker
+    emacs
+    firefox
+    gimp
+    git
+    inkscape
+    insomnia
+    jupyter
+    livebook
+    make
+    obs
+    pandoc
+    podman
+    postman
+    tmux
+    typora
+    vagrant
+    vim
+    xonsh
+    zathura
+    zeal
+    zsh
+  )
+  @programming_languages ~w(
+    C
+    C#
+    C++
+    R
+    clojure
+    crystal
+    dart
+    elixir
+    elm
+    erlang
+    go
+    haskell
+    java
+    javascript
+    julia
+    kotlin
+    latex
+    lisp
+    lua
+    nodejs
+    perl
+    php
+    python
+    ruby
+    rust
+    scala
+    solidity
+    stata
+    swift
+    tex
+    typescript
+  )
+  @libraries ~w(
+    absinthe
+    broadway
+    django
+    ecto
+    explorer
+    flask
+    laravel
+    nerves
+    nextjs
+    nx
+    phoenix
+    rails
+    reactjs
+    svelte
+    tailwind
+    vuejs
+  )
+  @notes ~w(
+    auth
+    design
+  )
+  @general ~w(
+    bio
+    blog
+    cv
+    gh
+    github
+    gitlab
+    gl
+    goodreads
+    in
+    instagram
+    keybase
+    lichess
+    linkedin
+    reddit
+    revolut
+    strava
+    telegram
+    trello
+    tw
+    twitch
+    twitter
+    wishlist
+    youtube
+  )
+
+  @reserved_names Enum.concat([
+                    @databases,
+                    @programming_languages,
+                    @libraries,
+                    @notes,
+                    @general
+                  ])
+
   @required_fields [:url]
   @optional_fields [:slug]
   @doc false
@@ -21,6 +155,7 @@ defmodule Estevao.Shortner.Link do
     |> validate_required(@required_fields)
     |> validate_format(:url, @url_regex)
     |> generate_slug()
+    |> validate_exclusion(:slug, @reserved_names)
     |> unique_constraint(:slug)
   end
 
