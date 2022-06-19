@@ -28,6 +28,13 @@ defmodule Estevao.DataCase do
   end
 
   setup tags do
+    Estevao.DataCase.setup_sandbox(tags)
+  end
+
+  @doc """
+  Sets up the sandbox based on the test tags.
+  """
+  def setup_sandbox(tags) do
     pid = Ecto.Adapters.SQL.Sandbox.start_owner!(Estevao.Repo, shared: not tags[:async])
     on_exit(fn -> Ecto.Adapters.SQL.Sandbox.stop_owner(pid) end)
     :ok
