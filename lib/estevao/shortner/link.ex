@@ -141,9 +141,10 @@ defmodule Estevao.Shortner.Link do
 
   @reserved_names Enum.concat([
                     @databases,
-                    @programming_languages,
                     @libraries,
                     @notes,
+                    @programming_languages,
+                    @tools,
                     @general
                   ])
 
