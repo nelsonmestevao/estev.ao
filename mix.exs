@@ -13,7 +13,7 @@ defmodule Estevao.MixProject do
       version: @version,
       description: @description,
       homepage_url: "https://estev.ao",
-      elixir: "~> 1.13",
+      elixir: "~> 1.14",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
