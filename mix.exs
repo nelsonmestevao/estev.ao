@@ -79,6 +79,7 @@ defmodule Estevao.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
+      {:tailwind_formatter, "~> 0.2.0"},
 
       # tools
       {:sobelow, "~> 0.11", only: :dev, runtime: false},

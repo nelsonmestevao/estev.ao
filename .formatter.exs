@@ -1,6 +1,6 @@
 [
   import_deps: [:ecto, :phoenix],
-  plugins: [Phoenix.LiveView.HTMLFormatter],
+  plugins: [TailwindFormatter, Phoenix.LiveView.HTMLFormatter],
   heex_line_length: 120,
   inputs: [
     "*.{heex,ex,exs}",
