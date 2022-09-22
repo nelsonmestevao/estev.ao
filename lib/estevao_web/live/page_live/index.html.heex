@@ -2,7 +2,7 @@
   <h1 class="mx-auto my-2 text-white text-center text-5xl font-bold z-10">estev.ao</h1>
   <p class="mx-auto my-2 text-white text-center text-3xl font-bold z-10">A short and simple redirecting service</p>
 
-  <.form let={f} for={@changeset} id="link-form" class="form" phx-change="validate" phx-submit="create">
+  <.form :let={f} for={@changeset} id="link-form" class="form" phx-change="validate" phx-submit="create">
     <div class="input">
       <%= text_input(f, :url, class: "url", placeholder: "Type your url...") %>
 

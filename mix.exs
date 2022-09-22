@@ -47,7 +47,7 @@ defmodule Estevao.MixProject do
       # web
       {:phoenix, "~> 1.6.9"},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_view, "~> 0.17.5"},
+      {:phoenix_live_view, "~> 0.18.0"},
 
       # database
       {:phoenix_ecto, "~> 4.4"},
