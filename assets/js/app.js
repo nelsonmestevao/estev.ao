@@ -5,7 +5,7 @@ import Hooks from "./hooks";
 import { LiveSocket } from "phoenix_live_view";
 // Establish Phoenix Socket and LiveView configuration.
 import { Socket } from "phoenix";
-import topbar from "../vendor/topbar";
+import { registerEvents } from "./events";
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -16,24 +16,8 @@ let liveSocket = new LiveSocket("/live", Socket, {
   hooks: Hooks,
 });
 
-// Show progress bar on live navigation and form submits. Only displays if still
-// loading after 120 msec
-topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
-
-let topBarScheduled = undefined;
-
-window.addEventListener("phx:page-loading-start", (_info) => {
-  Hooks.ChatMessages.handleMessages();
-  if (!topBarScheduled) {
-    topBarScheduled = setTimeout(() => topbar.show(), 120);
-  }
-});
-
-window.addEventListener("phx:page-loading-stop", (_info) => {
-  clearTimeout(topBarScheduled);
-  topBarScheduled = undefined;
-  topbar.hide();
-});
+// Register global event handlers
+registerEvents();
 
 // connect if there are any LiveViews on the page
 liveSocket.connect();
