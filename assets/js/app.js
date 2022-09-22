@@ -1,59 +1,39 @@
-// If you want to use Phoenix channels, run `mix help phx.gen.channel`
-// to get started and then uncomment the line below.
-// import "./user_socket.js"
-
-// You can include dependencies in two ways.
-//
-// The simplest option is to put them in assets/vendor and
-// import them using relative paths:
-//
-//     import "../vendor/some-package.js"
-//
-// Alternatively, you can `npm install some-package --prefix assets` and import
-// them using a path starting with the package name:
-//
-//     import "some-package"
-//
-
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html";
+
+import Hooks from "./hooks";
+import { LiveSocket } from "phoenix_live_view";
 // Establish Phoenix Socket and LiveView configuration.
 import { Socket } from "phoenix";
-import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
 
-let Hooks = {};
-
-Hooks.MessagesChange = {
-  mount() {
-    this.handleMessages();
-  },
-  updated() {
-    this.handleMessages();
-  },
-
-  handleMessages() {
-    messages = document.getElementsByClassName("chat-message");
-    messages[messages.length - 1].scrollIntoView();
-  },
-};
-
 let liveSocket = new LiveSocket("/live", Socket, {
   params: { _csrf_token: csrfToken },
   hooks: Hooks,
 });
 
-// Show progress bar on live navigation and form submits
+// Show progress bar on live navigation and form submits. Only displays if still
+// loading after 120 msec
 topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
-window.addEventListener(
-  "phx:page-loading-start",
-  (info) => Hooks.MessagesChange.handleMessages() && topbar.show()
-);
-window.addEventListener("phx:page-loading-stop", (info) => topbar.hide());
+
+let topBarScheduled = undefined;
+
+window.addEventListener("phx:page-loading-start", (_info) => {
+  Hooks.ChatMessages.handleMessages();
+  if (!topBarScheduled) {
+    topBarScheduled = setTimeout(() => topbar.show(), 120);
+  }
+});
+
+window.addEventListener("phx:page-loading-stop", (_info) => {
+  clearTimeout(topBarScheduled);
+  topBarScheduled = undefined;
+  topbar.hide();
+});
 
 // connect if there are any LiveViews on the page
 liveSocket.connect();
