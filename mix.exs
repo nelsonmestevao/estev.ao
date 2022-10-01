@@ -69,7 +69,7 @@ defmodule Estevao.MixProject do
       # monitoring
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix_live_dashboard, "~> 0.7"},
 
       # testing
       {:floki, ">= 0.30.0", only: :test},
