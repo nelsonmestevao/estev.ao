@@ -66,7 +66,7 @@ defmodule EstevaoWeb.ChatLive.Show do
   end
 
   @impl true
-  def handle_info(%{event: "presence_diff", payload: %{joins: joins, leaves: leaves}}, socket) do
+  def handle_info(%{event: "presence_diff", payload: %{joins: _joins, leaves: _leaves}}, socket) do
     online_users =
       EstevaoWeb.Presence.list(socket.assigns.topic)
       |> Map.keys()
