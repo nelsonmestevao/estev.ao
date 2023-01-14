@@ -45,7 +45,7 @@ defmodule EstevaoWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {EstevaoWeb.LayoutView, "live.html"}
+        layout: {EstevaoWeb.LayoutView, :live}
 
       unquote(view_helpers())
     end
