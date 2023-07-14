@@ -5,9 +5,12 @@ defmodule EstevaoWeb.HomeLive.Index do
   alias Estevao.Shortner.Services.CreateLink
   alias Estevao.Shortner.Services.ChangeLink
 
+  @name Mix.Project.config()[:name]
+  @description Mix.Project.config()[:description]
+
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket |> assign(result: nil) |> assign_form(new_link()), layout: false}
+    {:ok, socket |> assign(result: nil, name: @name, description: @description) |> assign_form(new_link()), layout: false}
   end
 
   @impl true
