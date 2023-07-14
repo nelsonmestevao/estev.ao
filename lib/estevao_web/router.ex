@@ -14,6 +14,10 @@ defmodule EstevaoWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin do
+    plug :auth
+  end
+
   scope "/", EstevaoWeb do
     pipe_through :browser
 
@@ -24,6 +28,7 @@ defmodule EstevaoWeb.Router do
 
   scope "/admin", EstevaoWeb do
     pipe_through :browser
+    pipe_through :admin
 
     live "/", AdminLive.Index, :index
 
@@ -42,6 +47,12 @@ defmodule EstevaoWeb.Router do
     pipe_through :api
 
     get "/", ApiController, :index
+  end
+
+  defp auth(conn, _opts) do
+    username = System.fetch_env!("AUTH_USERNAME")
+    password = System.fetch_env!("AUTH_PASSWORD")
+    Plug.BasicAuth.basic_auth(conn, username: username, password: password)
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
