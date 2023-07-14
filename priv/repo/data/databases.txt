@@ -1,0 +1,15 @@
+arangodb
+cassandra
+couchdb
+elasticsearch
+faunadb
+hbase
+hive
+mongodb
+mysql
+neo4j
+postgres
+redis
+sqlite
+sqlserver
+supabase

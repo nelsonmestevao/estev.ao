@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
+. scripts/helpers.sh
+# shellcheck source=../scripts/logging.sh
+. scripts/logging.sh
+# shellcheck source=../scripts/utils.sh
+. scripts/utils.sh
+
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.13.0
+
+function display_help() {
+  cat <<EOF
+  $(help_title_section Usage)
+    ${PROGRAM} [options] <environment>
+
+  $(help_title_section Environments)
+    dev               Development environment [default environment].
+
+  $(help_title_section Options)
+    -h --help         Show this screen.
+    -v --version      Show version.
+EOF
+}
+
+ENV='dev'
+OS=$(get_os_name)
+
+while [ ! $# -eq 0 ]; do
+  case "$1" in
+    -h | --help)
+      display_help
+      exit 0
+      ;;
+    -v | --version)
+      display_version "${VERSION}" "${PROGRAM}"
+      exit 0
+      ;;
+    *)
+      display_help >&2
+      exit 1
+      ;;
+  esac
+
+  shift
+done
+
+log_info --label "setup" "Installing required languages..."
+if not_installed "asdf"; then
+  log_error "We are using asdf (https://github.com/asdf-vm/asdf) to manage tool
+  dependencies, since it was not found on your system we cannot ensure that you
+  are using the correct versions of all the tools. Please install it and run
+  this script again, or proceed at your own peril."
+
+  ensure_confirmation
+else
+  set +e
+  asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git 2>/dev/null
+  asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git 2>/dev/null
+  set -e
+
+  asdf install
+fi
+
+log_info --label "setup" "Installing dependencies..."
+MIX_ENV="$ENV" mix local.hex --force
+MIX_ENV="$ENV" mix local.rebar --force
+MIX_ENV="$ENV" mix deps.get
+
+log_info --label "setup" "Run setup task..."
+MIX_ENV="$ENV" mix setup
+
+log_info --label "setup" "You're good to go! Run \`mix phx.server\` to get the development server running."

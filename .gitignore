@@ -1,6 +1,3 @@
-.env.*
-!.env.*.sample
-
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -21,6 +18,9 @@ erl_crash.dump
 
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
+
+# Temporary files, for example, from tests.
+/tmp/
 
 # Ignore package tarball (built via "mix hex.build").
 estevao-*.tar

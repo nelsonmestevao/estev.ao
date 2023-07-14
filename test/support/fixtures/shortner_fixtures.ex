@@ -11,8 +11,8 @@ defmodule Estevao.ShortnerFixtures do
     {:ok, link} =
       attrs
       |> Enum.into(%{
-        slug: "some slug",
-        url: "some url",
+        url: "https://example.com",
+        slug: "slug-#{System.unique_integer([:positive])}}",
         visits: 42
       })
       |> Estevao.Shortner.create_link()

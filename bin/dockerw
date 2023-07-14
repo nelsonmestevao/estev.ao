@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
+. scripts/helpers.sh
+# shellcheck source=../scripts/logging.sh
+. scripts/logging.sh
+# shellcheck source=../scripts/utils.sh
+. scripts/utils.sh
+
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.13.0
+
+function display_help() {
+  cat <<EOF
+  This is a wrapper of docker-compose to use the right configuration file for
+  this project. All the commands are passed directly to docker-compose.
+
+  $(help_title_section Usage)
+    ${PROGRAM} [options]
+    ${PROGRAM} [docker-compose command...]
+
+  $(help_title_section Options)
+    -h --help         Show this screen.
+    -v --version      Show version.
+
+  $(help_title_section Docker)
+  $(docker compose $@ | sed 's/^/    /' | tail -n +5)
+EOF
+}
+
+if not_installed "docker"; then
+  log_error "We are using docker to setup a local instance of the database, since it
+  was not found on your system we cannot do it. Please install it and run this
+  script again."
+
+  exit 1
+fi
+
+if not_installed "docker-compose"; then
+  log_error "We are using docker-compose to setup a local instance of the database, since it
+  was not found on your system we cannot do it. Please install it and run this
+  script again."
+
+  exit 1
+fi
+
+DOCKER_CONFIG_PATH=".config/docker"
+ENV=${MIX_ENV:-dev}
+OS=$(get_os_name)
+
+case ${1:---help} in
+  -h | --help)
+    display_help $@
+    ;;
+  -v | --version)
+    display_version "${VERSION}" "${PROGRAM}"
+    docker compose version
+    ;;
+  *)
+    docker compose -p "$(sanitize_name $(basename $PWD))" -f "${DOCKER_CONFIG_PATH}/docker-compose.${ENV}.yml" -f "${DOCKER_CONFIG_PATH}/${OS}.yml" $@
+    ;;
+esac

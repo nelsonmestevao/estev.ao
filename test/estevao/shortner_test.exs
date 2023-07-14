@@ -1,5 +1,5 @@
 defmodule Estevao.ShortnerTest do
-  use Estevao.DataCase
+  use Estevao.DataCase, async: true
 
   alias Estevao.Shortner
 
@@ -8,7 +8,7 @@ defmodule Estevao.ShortnerTest do
 
     import Estevao.ShortnerFixtures
 
-    @invalid_attrs %{slug: nil, url: nil, visits: nil}
+    @invalid_attrs %{url: nil, slug: nil, visits: nil}
 
     test "list_links/0 returns all links" do
       link = link_fixture()
@@ -21,11 +21,11 @@ defmodule Estevao.ShortnerTest do
     end
 
     test "create_link/1 with valid data creates a link" do
-      valid_attrs = %{slug: "some slug", url: "some url", visits: 42}
+      valid_attrs = %{url: "https://example.com/create", slug: "create", visits: 42}
 
       assert {:ok, %Link{} = link} = Shortner.create_link(valid_attrs)
-      assert link.slug == "some slug"
-      assert link.url == "some url"
+      assert link.url == "https://example.com/create"
+      assert link.slug == "create"
       assert link.visits == 42
     end
 
@@ -35,11 +35,11 @@ defmodule Estevao.ShortnerTest do
 
     test "update_link/2 with valid data updates the link" do
       link = link_fixture()
-      update_attrs = %{slug: "some updated slug", url: "some updated url", visits: 43}
+      update_attrs = %{url: "https://example.com/update", slug: "update", visits: 43}
 
       assert {:ok, %Link{} = link} = Shortner.update_link(link, update_attrs)
-      assert link.slug == "some updated slug"
-      assert link.url == "some updated url"
+      assert link.url == "https://example.com/update"
+      assert link.slug == "update"
       assert link.visits == 43
     end
 

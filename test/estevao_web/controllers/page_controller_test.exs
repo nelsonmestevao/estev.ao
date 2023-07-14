@@ -2,7 +2,7 @@ defmodule EstevaoWeb.PageControllerTest do
   use EstevaoWeb.ConnCase
 
   test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
-    assert html_response(conn, 200) =~ "Welcome to Phoenix!"
+    conn = get(conn, ~p"/")
+    assert html_response(conn, 200) =~ "estev.ao"
   end
 end

@@ -1,4 +1,4 @@
-name: Continuous Integration
+name: CI
 
 on:
   push:
@@ -8,24 +8,30 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  style:
-    runs-on: ubuntu-latest
-    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
-
+  test:
     strategy:
       matrix:
-        otp: [25.x]
-        elixir: [1.14.x]
+        os: [ubuntu-22.04]
+        otp: [26.x]
+        elixir: [1.15.x]
 
     services:
       db:
-        image: postgres:14
+        image: postgres:15
         ports:
           - 5432:5432
         env:
           POSTGRES_USERNAME: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_HOSTNAME: 0.0.0.0
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}} (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: ☁️ Checkout repository
@@ -37,14 +43,18 @@ jobs:
           otp-version: ${{ matrix.otp }}
           elixir-version: ${{ matrix.elixir }}
           build-flags: --all-warnings --warnings-as-errors
+        env:
+          MIX_ENV: test
 
       - name: 🔬 Run the tests
         run: mix test --warnings-as-errors
+        env:
+          MIX_ENV: test
 
-      - name: 📏 Check code formating
+      - name: 🧹 Check code formating
         run: mix format --check-formatted
         if: always()
 
-      - name: 🔍 Lint the code
+      - name: 💡 Lint the code
         run: mix credo --strict --all
         if: always()

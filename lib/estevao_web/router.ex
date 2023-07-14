@@ -5,7 +5,7 @@ defmodule EstevaoWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {EstevaoWeb.LayoutView, :root}
+    plug :put_root_layout, html: {EstevaoWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,46 +17,46 @@ defmodule EstevaoWeb.Router do
   scope "/", EstevaoWeb do
     pipe_through :browser
 
-    live "/", PageLive.Index, :index
-
-    live "/chat/:room_id", ChatLive.Show, :show
-
-    get "/r/:slug", LinkController, :redirect_to
-    get "/r/:slug/stats", LinkController, :show
-    get "/:slug", LinkController, :redirect_to
-    get "/:slug/stats", LinkController, :show
+    live "/", HomeLive.Index, :index
+    live "/show", AdminLive.Show, :show
+    live "/edit", AdminLive.Edit, :edit
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", EstevaoWeb do
-  #   pipe_through :api
-  # end
+  scope "/admin", EstevaoWeb do
+    pipe_through :browser
 
-  # Enables LiveDashboard only for development
-  #
-  # If you want to use the LiveDashboard in production, you should put
-  # it behind authentication and allow only admins to access it.
-  # If your application does not have an admins-only section yet,
-  # you can use Plug.BasicAuth to set up some basic authentication
-  # as long as you are also using SSL (which you should anyway).
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
+    live "/", AdminLive.Index, :index
 
-    scope "/" do
-      pipe_through :browser
+    scope "/links" do
+      live "/", LinkLive.Index, :index
+      live "/new", LinkLive.Index, :new
+      live "/:id/edit", LinkLive.Index, :edit
 
-      live_dashboard "/dashboard", metrics: EstevaoWeb.Telemetry
+      live "/:id", LinkLive.Show, :show
+      live "/:id/show/edit", LinkLive.Show, :edit
     end
   end
 
-  # Enables the Swoosh mailbox preview in development.
-  #
-  # Note that preview only shows emails that were sent by the same
-  # node running the Phoenix server.
-  if Mix.env() == :dev do
+  # Other scopes may use custom stacks.
+  scope "/api", EstevaoWeb do
+    pipe_through :api
+
+    get "/", ApiController, :index
+  end
+
+  # Enable LiveDashboard and Swoosh mailbox preview in development
+  if Application.compile_env(:estevao, :dev_routes) do
+    # If you want to use the LiveDashboard in production, you should put
+    # it behind authentication and allow only admins to access it.
+    # If your application does not have an admins-only section yet,
+    # you can use Plug.BasicAuth to set up some basic authentication
+    # as long as you are also using SSL (which you should anyway).
+    import Phoenix.LiveDashboard.Router
+
     scope "/dev" do
       pipe_through :browser
 
+      live_dashboard "/dashboard", metrics: EstevaoWeb.Telemetry
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end

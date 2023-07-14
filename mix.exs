@@ -3,7 +3,7 @@ defmodule Estevao.MixProject do
 
   @app :estevao
   @name "estev.ao"
-  @version "1.0.0-dev"
+  @version "1.0.0"
   @description "A short and simple redirecting service."
 
   def project do
@@ -13,9 +13,8 @@ defmodule Estevao.MixProject do
       version: @version,
       description: @description,
       homepage_url: "https://estev.ao",
-      elixir: "~> 1.14",
+      elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
@@ -45,47 +44,47 @@ defmodule Estevao.MixProject do
   defp deps do
     [
       # web
-      {:phoenix, "~> 1.6.9"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_view, "~> 0.18.0"},
+      {:phoenix, "~> 1.7.7"},
+      {:phoenix_html, "~> 3.3"},
+      {:phoenix_live_view, "~> 0.19.0"},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.5"},
 
       # database
       {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
+      {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
-
-      # i18n
-      {:gettext, "~> 0.18"},
 
       # mailer
       {:swoosh, "~> 1.3"},
+      {:finch, "~> 0.13"},
 
-      # utilities
-      {:jason, "~> 1.2"},
-      {:plug_cowboy, "~> 2.5"},
-      {:nanoid, "~> 2.0.5"},
-      {:mnemonic_slugs, "~> 0.0.3"},
+      # i18n
+      {:gettext, "~> 0.20"},
 
       # monitoring
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:phoenix_live_dashboard, "~> 0.7"},
+      {:phoenix_live_dashboard, "~> 0.8.0"},
+
+      # utilities
+      {:utilx, "~> 0.2.2"},
+      {:nanoid, "~> 2.0.5"},
+
+      # assets
+      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+
+      # development
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
 
       # testing
       {:floki, ">= 0.30.0", only: :test},
 
-      # development
-      {:dotenvy, "~> 0.7.0", runtime: Mix.env() == :dev},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev},
-      {:tailwind_formatter, "~> 0.3"},
-
       # tools
-      {:sobelow, "~> 0.11", only: :dev, runtime: false},
-      {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.28", only: :dev, runtime: false}
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.30", only: :dev, runtime: false}
     ]
   end
 
@@ -97,13 +96,12 @@ defmodule Estevao.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
+      setup: ["deps.get", "ecto.setup", "assets.setup", "assets.build"],
       "ecto.seed": ["run priv/repo/seeds.exs"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
-      lint: ["credo --strict --all"],
+      lint: ["dialyzer --format dialyxir", "credo --strict --all"],
       check: [
         "clean",
         "deps.unlock --check-unused",
@@ -112,7 +110,10 @@ defmodule Estevao.MixProject do
         "deps.unlock --check-unused",
         "test --warnings-as-errors",
         "lint"
-      ]
+      ],
+      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.build": ["tailwind default", "esbuild default"],
+      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
   end
 end

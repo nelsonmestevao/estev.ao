@@ -8,15 +8,16 @@ defmodule Estevao.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
-      Estevao.Repo,
       # Start the Telemetry supervisor
       EstevaoWeb.Telemetry,
+      # Start the Ecto repository
+      Estevao.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: Estevao.PubSub},
+      # Start Finch
+      {Finch, name: Estevao.Finch},
       # Start the Endpoint (http/https)
-      EstevaoWeb.Endpoint,
-      EstevaoWeb.Presence
+      EstevaoWeb.Endpoint
       # Start a worker by calling: Estevao.Worker.start_link(arg)
       # {Estevao.Worker, arg}
     ]

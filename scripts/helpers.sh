@@ -31,4 +31,4 @@ function help_title_section() {
   echo -e "${BOLD}${TITLE}${RESET}"
 }
 
-([ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.8.0) || true
+([ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.13.0) || true

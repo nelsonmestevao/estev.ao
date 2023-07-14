@@ -38,24 +38,6 @@ defmodule Estevao.Shortner do
   def get_link!(id), do: Repo.get!(Link, id)
 
   @doc """
-  Gets a single link by any field.
-
-  Returns `nil` if the Link does not exist.
-
-  ## Examples
-
-      iex> get_link!(slug: "example")
-      %Link{}
-
-      iex> get_link!(slug: "fakexample)
-      nil
-
-  """
-  def get_link(attrs) when is_list(attrs) do
-    Repo.get_by(Link, attrs)
-  end
-
-  @doc """
   Creates a link.
 
   ## Examples
@@ -69,7 +51,7 @@ defmodule Estevao.Shortner do
   """
   def create_link(attrs \\ %{}) do
     %Link{}
-    |> Link.create_changeset(attrs)
+    |> Link.changeset(attrs)
     |> Repo.insert()
   end
 
