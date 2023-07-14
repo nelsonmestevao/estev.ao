@@ -35,4 +35,14 @@ defmodule EstevaoWeb.ConnCase do
     Estevao.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
+
+  def login_as_admin(%{conn: conn}) do
+    username = System.fetch_env!("AUTH_USERNAME")
+    password = System.fetch_env!("AUTH_PASSWORD")
+
+    %{conn:
+      conn
+      |> Phoenix.ConnTest.init_test_session(%{})
+      |> Plug.Conn.put_req_header("authorization", Plug.BasicAuth.encode_basic_auth(username, password))}
+  end
 end

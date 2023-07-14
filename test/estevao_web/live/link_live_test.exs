@@ -22,7 +22,7 @@ defmodule EstevaoWeb.LinkLiveTest do
   end
 
   describe "Index" do
-    setup [:create_link]
+    setup [:create_link, :login_as_admin]
 
     test "lists all links", %{conn: conn, link: link} do
       {:ok, _index_live, html} = live(conn, ~p"/admin/links")
@@ -86,7 +86,7 @@ defmodule EstevaoWeb.LinkLiveTest do
   end
 
   describe "Show" do
-    setup [:create_link]
+    setup [:create_link, :login_as_admin]
 
     test "displays link", %{conn: conn, link: link} do
       {:ok, _show_live, html} = live(conn, ~p"/admin/links/#{link}")

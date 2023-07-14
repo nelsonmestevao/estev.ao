@@ -4,8 +4,8 @@ defmodule Estevao.Repo.Migrations.CreateLinks do
   def change do
     create table(:links, primary_key: false) do
       add :id, :binary_id, primary_key: true
-      add :slug, :string, null: false
-      add :url, :string, null: false
+      add :slug, :string
+      add :url, :string
       add :visits, :integer, default: 0
 
       timestamps()
