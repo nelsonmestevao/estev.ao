@@ -1,5 +1,15 @@
 defmodule EstevaoWeb.Telemetry do
+  @moduledoc """
+  Phoenix's Telemetry tooling provides you with a supervisor that uses
+  Telemetry.Metrics to define the list of Telemetry events to handle and how to
+  handle those events, i.e. how to structure them as a certain type of metric.
+
+  This supervisor works together with Telemetry reporters to respond to the
+  specified Telemetry events by aggregating them as the appropriate metric and
+  sending them to the correct reporting destination.
+  """
   use Supervisor
+
   import Telemetry.Metrics
 
   def start_link(arg) do
