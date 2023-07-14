@@ -3,6 +3,7 @@ defmodule Estevao.ShortnerServicesTest do
 
   alias Estevao.Shortner.Link
   alias Estevao.Shortner.Services.CreateLink
+
   doctest Estevao.Shortner.Services.ChangeLink
 
   describe "CreateLink.call/1" do

@@ -1,9 +1,10 @@
 defmodule EstevaoWeb.HomeLive.Index do
+  @moduledoc false
   use EstevaoWeb, :live_view
 
   alias Estevao.Shortner.Link
-  alias Estevao.Shortner.Services.CreateLink
   alias Estevao.Shortner.Services.ChangeLink
+  alias Estevao.Shortner.Services.CreateLink
 
   @name Mix.Project.config()[:name]
   @description Mix.Project.config()[:description]
@@ -41,7 +42,7 @@ defmodule EstevaoWeb.HomeLive.Index do
     assign(socket, :form, to_form(changeset))
   end
 
-  defp new_link() do
+  defp new_link do
     ChangeLink.call(%Link{})
   end
 end

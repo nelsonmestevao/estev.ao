@@ -1,4 +1,5 @@
 defmodule EstevaoWeb.LinkLive.FormComponent do
+  @moduledoc false
   use EstevaoWeb, :live_component
 
   alias Estevao.Shortner

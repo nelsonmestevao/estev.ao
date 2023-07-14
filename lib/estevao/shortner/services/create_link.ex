@@ -13,8 +13,8 @@ defmodule Estevao.Shortner.Services.CreateLink do
       iex> {:ok, %Link{}}
   """
 
-  alias Estevao.Shortner.Link
   alias Estevao.Repo
+  alias Estevao.Shortner.Link
 
   def call(attrs) do
     %Link{}

@@ -4,9 +4,9 @@ defmodule Estevao.ShortnerTest do
   alias Estevao.Shortner
 
   describe "links" do
-    alias Estevao.Shortner.Link
-
     import Estevao.ShortnerFixtures
+
+    alias Estevao.Shortner.Link
 
     @invalid_attrs %{url: nil, slug: nil, visits: nil}
 

@@ -4,8 +4,8 @@ defmodule Estevao.Shortner do
   """
 
   import Ecto.Query, warn: false
-  alias Estevao.Repo
 
+  alias Estevao.Repo
   alias Estevao.Shortner.Link
 
   @doc """

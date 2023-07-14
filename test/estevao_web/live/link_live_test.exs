@@ -1,8 +1,8 @@
 defmodule EstevaoWeb.LinkLiveTest do
   use EstevaoWeb.ConnCase
 
-  import Phoenix.LiveViewTest
   import Estevao.ShortnerFixtures
+  import Phoenix.LiveViewTest
 
   @create_attrs %{
     url: "https://example.com/create",

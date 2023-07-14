@@ -82,6 +82,7 @@ defmodule Estevao.MixProject do
       {:floki, ">= 0.30.0", only: :test},
 
       # tools
+      {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
       {:tailwind_formatter, "~> 0.3.6", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},

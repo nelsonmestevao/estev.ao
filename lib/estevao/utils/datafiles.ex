@@ -32,7 +32,8 @@ defmodule Estevao.Utils.Datafiles do
       ["line1", "line2", "line3"]
   """
   def read_data_file!(file) do
-    Path.join([:code.priv_dir(@otp_app), "repo", "data", file])
+    [:code.priv_dir(@otp_app), "repo", "data", file]
+    |> Path.join()
     |> File.read!()
     |> String.split("\n")
   end

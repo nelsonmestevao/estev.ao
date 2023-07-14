@@ -1,4 +1,5 @@
 defmodule EstevaoWeb.LinkLive.Index do
+  @moduledoc false
   use EstevaoWeb, :live_view
 
   alias Estevao.Shortner

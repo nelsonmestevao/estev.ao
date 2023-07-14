@@ -1,4 +1,5 @@
 defmodule EstevaoWeb.AdminLive.Index do
+  @moduledoc false
   use EstevaoWeb, :live_view
 
   @name Mix.Project.config()[:name]

@@ -10,8 +10,8 @@ defmodule Estevao do
   def schema do
     quote do
       use Ecto.Schema
-      import Ecto.Changeset
 
+      import Ecto.Changeset
       import Utilx.EctoUtils
 
       @primary_key {:id, :binary_id, autogenerate: true}
