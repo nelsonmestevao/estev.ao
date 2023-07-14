@@ -69,7 +69,7 @@ defmodule Estevao.MixProject do
 
       # utilities
       {:utilx, "~> 0.2.2"},
-      {:nanoid, "~> 2.0.5"},
+      {:nanoid, "~> 2.1.0"},
 
       # assets
       {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
@@ -82,6 +82,7 @@ defmodule Estevao.MixProject do
       {:floki, ">= 0.30.0", only: :test},
 
       # tools
+      {:tailwind_formatter, "~> 0.3.6", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false}
