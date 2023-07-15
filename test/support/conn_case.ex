@@ -40,9 +40,11 @@ defmodule EstevaoWeb.ConnCase do
     username = System.fetch_env!("AUTH_USERNAME")
     password = System.fetch_env!("AUTH_PASSWORD")
 
-    %{conn:
-      conn
-      |> Phoenix.ConnTest.init_test_session(%{})
-      |> Plug.Conn.put_req_header("authorization", Plug.BasicAuth.encode_basic_auth(username, password))}
+    %{
+      conn:
+        conn
+        |> Phoenix.ConnTest.init_test_session(%{})
+        |> Plug.Conn.put_req_header("authorization", Plug.BasicAuth.encode_basic_auth(username, password))
+    }
   end
 end

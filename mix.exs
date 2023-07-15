@@ -103,7 +103,9 @@ defmodule Estevao.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      lint: ["dialyzer --format dialyxir", "credo --strict --all"],
+      "lint.credo": ["credo --strict --all"],
+      "lint.dialyzer": ["dialyzer --format dialyxir"],
+      lint: ["lint.dialyzer", "lint.credo"],
       check: [
         "clean",
         "deps.unlock --check-unused",

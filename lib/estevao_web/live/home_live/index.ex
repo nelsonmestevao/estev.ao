@@ -11,7 +11,11 @@ defmodule EstevaoWeb.HomeLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, socket |> assign(result: nil, name: @name, description: @description) |> assign_form(new_link()), layout: false}
+    {:ok,
+     socket
+     |> assign(name: @name, description: @description)
+     |> assign(result: nil)
+     |> assign_form(new_link()), layout: false}
   end
 
   @impl true

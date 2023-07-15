@@ -18,6 +18,7 @@ defmodule EstevaoWeb.CoreComponents do
 
   import EstevaoWeb.Gettext
 
+  alias Phoenix.HTML
   alias Phoenix.LiveView.JS
 
   @doc """
@@ -285,7 +286,7 @@ defmodule EstevaoWeb.CoreComponents do
 
   slot :inner_block
 
-  def input(%{field: %Phoenix.HTML.FormField{} = field} = assigns) do
+  def input(%{field: %HTML.FormField{} = field} = assigns) do
     assigns
     |> assign(field: nil, id: assigns.id || field.id)
     |> assign(:errors, Enum.map(field.errors, &translate_error(&1)))
@@ -296,7 +297,7 @@ defmodule EstevaoWeb.CoreComponents do
 
   def input(%{type: "checkbox", value: value} = assigns) do
     assigns =
-      assign_new(assigns, :checked, fn -> Phoenix.HTML.Form.normalize_value("checkbox", value) end)
+      assign_new(assigns, :checked, fn -> HTML.Form.normalize_value("checkbox", value) end)
 
     ~H"""
     <div phx-feedback-for={@name}>
