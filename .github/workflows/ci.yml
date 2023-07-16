@@ -7,6 +7,10 @@ on:
     branches: [main, master]
     types: [opened, synchronize]
 
+env:
+  AUTH_USERNAME: test
+  AUTH_PASSWORD: test
+
 jobs:
   test:
     strategy:
