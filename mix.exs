@@ -12,6 +12,7 @@ defmodule Estevao.MixProject do
       name: @name,
       version: @version,
       description: @description,
+      git_ref: git_revision_hash(),
       homepage_url: "https://estev.ao",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -119,5 +120,25 @@ defmodule Estevao.MixProject do
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
+  end
+
+  defp git_revision_hash do
+    case_result =
+      case System.cmd("git", ["rev-parse", "HEAD"]) do
+        {ref, 0} ->
+          ref
+
+        {_, _code} ->
+          git_ref = File.read!(".git/HEAD")
+
+          if String.contains?(git_ref, "ref:") do
+            ["ref:", ref_path] = String.split(git_ref)
+            File.read!(".git/#{ref_path}")
+          else
+            git_ref
+          end
+      end
+
+    String.replace(case_result, "\n", "")
   end
 end
