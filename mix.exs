@@ -13,7 +13,7 @@ defmodule Estevao.MixProject do
       version: @version,
       description: @description,
       homepage_url: "https://estev.ao",
-      elixir: "~> 1.15",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -68,7 +68,7 @@ defmodule Estevao.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.0"},
 
       # utilities
-      {:utilx, "~> 0.2.2"},
+      {:utilx, "~> 0.3.0"},
       {:nanoid, "~> 2.1.0"},
 
       # assets
