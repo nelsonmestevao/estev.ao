@@ -17,7 +17,7 @@ defmodule EstevaoWeb.Router do
   end
 
   pipeline :admin do
-    plug :auth
+    plug :basic_auth
   end
 
   scope "/api", EstevaoWeb do
@@ -53,9 +53,10 @@ defmodule EstevaoWeb.Router do
     get "/:slug", RedirectController, :show
   end
 
-  defp auth(conn, _opts) do
-    username = System.fetch_env!("AUTH_USERNAME")
-    password = System.fetch_env!("AUTH_PASSWORD")
+  defp basic_auth(conn, _opts) do
+    username = Application.get_env(:estevao, :basic_auth)[:username]
+    password = Application.get_env(:estevao, :basic_auth)[:password]
+
     Plug.BasicAuth.basic_auth(conn, username: username, password: password)
   end
 

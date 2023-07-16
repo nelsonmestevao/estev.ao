@@ -37,8 +37,8 @@ defmodule EstevaoWeb.ConnCase do
   end
 
   def login_as_admin(%{conn: conn}) do
-    username = System.fetch_env!("AUTH_USERNAME")
-    password = System.fetch_env!("AUTH_PASSWORD")
+    username = Application.get_env(:estevao, :basic_auth)[:username]
+    password = Application.get_env(:estevao, :basic_auth)[:password]
 
     %{
       conn:

@@ -21,6 +21,22 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
+  auth_username =
+    System.get_env("AUTH_USERNAME") ||
+      raise """
+      environment variable AUTH_USERNAME is missing.
+      """
+
+  auth_password =
+    System.get_env("AUTH_PASSWORD") ||
+      raise """
+      environment variable AUTH_PASSWORD is missing.
+      """
+
+  config :estevao, :basic_auth,
+    username: auth_username,
+    password: auth_password
+
   database_url =
     System.get_env("DATABASE_URL") ||
       raise """
