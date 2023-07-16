@@ -31,7 +31,7 @@ defmodule Estevao.MixProject do
   def application do
     [
       mod: {Estevao.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
 
@@ -67,6 +67,7 @@ defmodule Estevao.MixProject do
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:phoenix_live_dashboard, "~> 0.8.0"},
+      {:ecto_psql_extras, "~> 0.7.12"},
 
       # utilities
       {:utilx, "~> 0.4.0"},
