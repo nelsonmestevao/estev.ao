@@ -22,8 +22,7 @@ defmodule EstevaoWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index, :index
-    live "/show", AdminLive.Show, :show
-    live "/edit", AdminLive.Edit, :edit
+    get "/:slug", RedirectController, :show
   end
 
   scope "/admin", EstevaoWeb do
