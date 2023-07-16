@@ -1,5 +1,5 @@
 defmodule EstevaoWeb.RedirectControllerTest do
-  use EstevaoWeb.ConnCase
+  use EstevaoWeb.ConnCase, async: true
 
   alias Estevao.Shortner
 
