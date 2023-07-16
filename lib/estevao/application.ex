@@ -17,8 +17,9 @@ defmodule Estevao.Application do
       # Start Finch
       {Finch, name: Estevao.Finch},
       # Start the Endpoint (http/https)
-      EstevaoWeb.Endpoint
+      EstevaoWeb.Endpoint,
       # Start a worker by calling: Estevao.Worker.start_link(arg)
+      {Estevao.Shortner.Services.UpdateLinkVisits, []}
       # {Estevao.Worker, arg}
     ]
 

@@ -18,24 +18,13 @@ defmodule Estevao.Shortner.Services.VisitLink do
       %Estevao.Shortner.Link{}
   """
 
-  import Ecto.Query
-
   alias Estevao.Repo
   alias Estevao.Shortner.Link
+  alias Estevao.Shortner.Services.UpdateLinkVisits
 
   def call(slug) do
-    query =
-      link_by_slug_query(slug)
+    UpdateLinkVisits.increment(slug)
 
-    Task.start(fn ->
-      Repo.update_all(query, inc: [visits: 1])
-    end)
-
-    Repo.one(query)
-  end
-
-  defp link_by_slug_query(slug) do
-    from l in Link,
-      where: l.slug == ^slug
+    Repo.get_by(Link, slug: slug)
   end
 end
