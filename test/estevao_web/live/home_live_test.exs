@@ -10,9 +10,9 @@ defmodule EstevaoWeb.HomeLiveTest do
     assert html =~ "Type your URL..."
 
     assert html =
-      home_live
-      |> form("#link-form", link: %{"url" => "http://example.com", "slug" => "example"})
-      |> render_submit()
+             home_live
+             |> form("#link-form", link: %{"url" => "http://example.com", "slug" => "example"})
+             |> render_submit()
 
     assert html =~ "Type your URL..."
   end

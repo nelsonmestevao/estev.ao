@@ -107,13 +107,13 @@
       </div>
     </.form>
 
-    <div :if={@result} class="result">
-      <a class="link" href={@result.link}>
+    <div :if={@result} class="mt-4 w-full space-x-8 rounded-md p-2 text-sm outline-none">
+      <a class="text-lg underline" href={@result.link}>
         <%= String.split(@result.link, "://") |> Enum.at(1) %>
       </a>
       <button
         class={[
-          "phx-submit-loading:opacity-75 rounded-lg bg-zinc-900 hover:bg-zinc-700 py-2 px-3",
+          "phx-submit-loading:opacity-75 rounded-lg hover:bg-slate-950 bg-slate-900 py-2 px-3 uppercase",
           "text-sm font-semibold leading-6 text-white active:text-white/80"
         ]}
         type="button"
