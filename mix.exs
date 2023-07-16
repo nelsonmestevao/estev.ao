@@ -4,7 +4,7 @@ defmodule Estevao.MixProject do
   @app :estevao
   @name "estev.ao"
   @version "1.0.0"
-  @description "A short and simple redirecting service."
+  @description "A short and simple redirecting service"
 
   def project do
     [
