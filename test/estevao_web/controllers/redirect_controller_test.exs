@@ -15,8 +15,6 @@ defmodule EstevaoWeb.RedirectControllerTest do
       assert conn.status == 307
       assert hd(get_resp_header(conn, "location")) == link.url
 
-      Process.sleep(10)
-
       assert Shortner.get_link!(link.id).visits == 1
     end
 
