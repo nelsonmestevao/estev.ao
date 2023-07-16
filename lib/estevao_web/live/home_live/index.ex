@@ -42,10 +42,6 @@ defmodule EstevaoWeb.HomeLive.Index do
     end
   end
 
-  defp assign_form(socket, %Ecto.Changeset{} = changeset) do
-    assign(socket, :form, to_form(changeset))
-  end
-
   defp new_link do
     ChangeLink.call(%Link{})
   end

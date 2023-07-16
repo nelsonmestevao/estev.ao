@@ -54,6 +54,8 @@ defmodule EstevaoWeb do
       use Phoenix.LiveView,
         layout: {EstevaoWeb.Layouts, :app}
 
+      import EstevaoWeb.LiveHelpers
+
       unquote(html_helpers())
     end
   end
@@ -61,6 +63,8 @@ defmodule EstevaoWeb do
   def live_component do
     quote do
       use Phoenix.LiveComponent
+
+      import EstevaoWeb.LiveHelpers
 
       unquote(html_helpers())
     end
