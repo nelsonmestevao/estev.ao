@@ -68,7 +68,7 @@ defmodule Estevao.MixProject do
       {:phoenix_live_dashboard, "~> 0.8.0"},
 
       # utilities
-      {:utilx, "~> 0.3.0"},
+      {:utilx, "~> 0.4.0"},
       {:nanoid, "~> 2.1.0"},
 
       # assets

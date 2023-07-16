@@ -22,23 +22,23 @@ defmodule EstevaoWeb.Router do
     pipe_through :browser
 
     live "/", HomeLive.Index, :index
-    get "/:slug", RedirectController, :show
-  end
 
-  scope "/admin", EstevaoWeb do
-    pipe_through :browser
-    pipe_through :admin
+    scope "/admin" do
+      pipe_through :admin
 
-    live "/", AdminLive.Index, :index
+      live "/", AdminLive.Index, :index
 
-    scope "/links" do
-      live "/", LinkLive.Index, :index
-      live "/new", LinkLive.Index, :new
-      live "/:id/edit", LinkLive.Index, :edit
+      scope "/links" do
+        live "/", LinkLive.Index, :index
+        live "/new", LinkLive.Index, :new
+        live "/:id/edit", LinkLive.Index, :edit
 
-      live "/:id", LinkLive.Show, :show
-      live "/:id/show/edit", LinkLive.Show, :edit
+        live "/:id", LinkLive.Show, :show
+        live "/:id/show/edit", LinkLive.Show, :edit
+      end
     end
+
+    get "/:slug", RedirectController, :show
   end
 
   # Other scopes may use custom stacks.
