@@ -33,5 +33,11 @@ defmodule Estevao.ShortnerServicesTest do
     test "does not create a link with invalid attributes" do
       assert {:error, %Ecto.Changeset{}} = CreateLink.call(%{slug: "my-slug"})
     end
+
+    test "does not create a link with duplicated slug" do
+      {:ok, _link} = CreateLink.call(%{url: "https://example.com", slug: "unique"})
+
+      assert {:error, %Ecto.Changeset{}} = CreateLink.call(%{slug: "unique", url: "https://example.net"})
+    end
   end
 end
