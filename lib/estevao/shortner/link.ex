@@ -10,7 +10,7 @@ defmodule Estevao.Shortner.Link do
 
   schema "links" do
     field :url, :string
-    field :slug, :string
+    field :slug, :string, autogenerate: {Nanoid, :generate, [6, @slug_alphabet]}
     field :visits, :integer, default: 0
 
     timestamps()
@@ -34,7 +34,6 @@ defmodule Estevao.Shortner.Link do
     |> validate_required(@required_fields)
     |> validate_url(:url, "invalid URL")
     |> validate_exclusion(:slug, @reserved_names)
-    |> ensure_slug()
     |> unique_constraint(:slug)
   end
 
@@ -45,14 +44,6 @@ defmodule Estevao.Shortner.Link do
     |> cast(attrs, @required_fields ++ @optional_fields)
     |> validate_required(@required_fields)
     |> validate_url(:url, "invalid URL")
-    |> ensure_slug()
     |> unique_constraint(:slug)
-  end
-
-  defp ensure_slug(changeset) do
-    update_change(changeset, :slug, fn
-      nil -> Nanoid.generate(6, @slug_alphabet)
-      slug -> slug
-    end)
   end
 end
