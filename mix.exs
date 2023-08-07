@@ -114,7 +114,7 @@ defmodule Estevao.MixProject do
         "format --check-formatted",
         "deps.unlock --check-unused",
         "test --warnings-as-errors",
-        "lint"
+        "credo --strict --all"
       ],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],
