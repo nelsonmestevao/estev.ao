@@ -35,6 +35,7 @@ defmodule Estevao.Shortner do
       ** (Ecto.NoResultsError)
 
   """
+  def get_link!(slug: slug), do: Repo.get_by!(Link, slug: slug)
   def get_link!(id), do: Repo.get!(Link, id)
 
   @doc """

@@ -13,7 +13,7 @@ defmodule Estevao.ShortnerFixtures do
       |> Enum.into(%{
         url: "https://example.com",
         slug: "slug-#{System.unique_integer([:positive])}}",
-        visits: 42
+        visits: 0
       })
       |> Estevao.Shortner.create_link()
 

@@ -24,6 +24,11 @@ defmodule EstevaoWeb.Router do
     pipe_through :api
 
     get "/", ApiController, :index
+
+    scope "/links" do
+      post "/", LinkController, :create
+      get "/:slug", LinkController, :show
+    end
   end
 
   scope "/", EstevaoWeb do

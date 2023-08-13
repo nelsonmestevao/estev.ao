@@ -11,6 +11,7 @@ defmodule Estevao.Shortner.Services.CreateLink do
 
       iex> Estevao.Shortner.Services.CreateLink.call(%{url: "https://example.com", slug: "my-unique_slug})
       iex> {:ok, %Link{}}
+
   """
 
   alias Estevao.Repo

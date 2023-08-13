@@ -1,11 +1,12 @@
 defmodule EstevaoWeb.RedirectControllerTest do
   use EstevaoWeb.ConnCase, async: true
 
+  import Estevao.ShortnerFixtures
+
   alias Estevao.Shortner
 
   setup %{conn: conn} do
-    {:ok, link} = Shortner.create_link(%{url: "https://example.com", slug: "sample-slug"})
-    {:ok, conn: conn, link: link}
+    {:ok, conn: conn, link: link_fixture()}
   end
 
   describe "show/2" do
