@@ -31,6 +31,13 @@ defmodule EstevaoWeb.Router do
     end
   end
 
+  scope "/api" do
+    pipe_through :admin
+
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: EstevaoWeb.Schema
+    forward "/graphql", Absinthe.Plug, schema: EstevaoWeb.Schema
+  end
+
   scope "/", EstevaoWeb do
     pipe_through :browser
 

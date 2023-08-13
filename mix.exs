@@ -47,8 +47,11 @@ defmodule Estevao.MixProject do
       {:phoenix, "~> 1.7.7"},
       {:phoenix_html, "~> 3.3"},
       {:phoenix_live_view, "~> 0.19.0"},
-      {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+
+      # graphql
+      {:absinthe, "~> 1.7"},
+      {:absinthe_plug, "~> 1.5"},
 
       # database
       {:phoenix_ecto, "~> 4.4"},
@@ -61,6 +64,9 @@ defmodule Estevao.MixProject do
 
       # i18n
       {:gettext, "~> 0.20"},
+
+      # json
+      {:jason, "~> 1.2"},
 
       # monitoring
       {:telemetry_metrics, "~> 0.6"},

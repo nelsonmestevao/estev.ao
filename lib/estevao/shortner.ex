@@ -38,6 +38,8 @@ defmodule Estevao.Shortner do
   def get_link!(slug: slug), do: Repo.get_by!(Link, slug: slug)
   def get_link!(id), do: Repo.get!(Link, id)
 
+  def get_link(slug: slug), do: Repo.get_by(Link, slug: slug)
+
   @doc """
   Creates a link.
 
