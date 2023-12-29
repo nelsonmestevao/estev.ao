@@ -90,7 +90,7 @@ defmodule Estevao.MixProject do
 
       # tools
       {:styler, "~> 0.7", only: [:dev, :test], runtime: false},
-      {:tailwind_formatter, "~> 0.3.6", only: [:dev, :test], runtime: false},
+      {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30", only: :dev, runtime: false}

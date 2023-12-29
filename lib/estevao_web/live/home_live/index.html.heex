@@ -56,12 +56,7 @@
           id={f[:url].id}
           value={Phoenix.HTML.Form.normalize_value("text", f[:url].value)}
           placeholder="Type your URL..."
-          class={[
-            "block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-            "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-            f[:url].errors == [] && "border-zinc-300 focus:border-zinc-400",
-            f[:url].errors != [] && "border-rose-500 focus:border-rose-600"
-          ]}
+          class={["block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6", "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400", f[:url].errors == [] && "border-zinc-300 focus:border-zinc-400", f[:url].errors != [] && "border-rose-500 focus:border-rose-600"]}
         />
         <p
           :for={error_msg <- f[:url].errors}
@@ -79,12 +74,7 @@
             id={f[:slug].id}
             value={Phoenix.HTML.Form.normalize_value("text", f[:slug].value)}
             placeholder="Optional slug..."
-            class={[
-              "block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6",
-              "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400",
-              f[:slug].errors == [] && "border-zinc-300 focus:border-zinc-400",
-              f[:slug].errors != [] && "border-rose-500 focus:border-rose-600"
-            ]}
+            class={["block w-full rounded-lg text-zinc-900 focus:ring-0 sm:text-sm sm:leading-6", "phx-no-feedback:border-zinc-300 phx-no-feedback:focus:border-zinc-400", f[:slug].errors == [] && "border-zinc-300 focus:border-zinc-400", f[:slug].errors != [] && "border-rose-500 focus:border-rose-600"]}
           />
           <p
             :for={error_msg <- f[:slug].errors}
@@ -96,10 +86,7 @@
         </div>
         <div class="mt-4 w-full rounded-md p-2 text-sm outline-none md:mt-0 lg:w-2/5">
           <button
-            class={[
-              "w-full phx-submit-loading:opacity-75 rounded-lg hover:bg-slate-950 bg-slate-900 py-2 px-3 uppercase",
-              "text-sm font-semibold leading-6 text-white active:text-white/80"
-            ]}
+            class={["w-full rounded-lg bg-slate-900 px-3 py-2 uppercase hover:bg-slate-950 phx-submit-loading:opacity-75", "text-sm font-semibold leading-6 text-white active:text-white/80"]}
             phx-disable-with="Creating..."
           >
             Go
@@ -113,10 +100,7 @@
         <%= String.split(@result.link, "://") |> Enum.at(1) %>
       </a>
       <button
-        class={[
-          "phx-submit-loading:opacity-75 rounded-lg hover:bg-slate-950 bg-slate-900 py-2 px-3 uppercase",
-          "text-sm font-semibold leading-6 text-white active:text-white/80"
-        ]}
+        class={["rounded-lg bg-slate-900 px-3 py-2 uppercase hover:bg-slate-950 phx-submit-loading:opacity-75", "text-sm font-semibold leading-6 text-white active:text-white/80"]}
         type="button"
         onclick={"navigator.clipboard.writeText('#{@result.link}')"}
       >
