@@ -8,18 +8,14 @@ defmodule Estevao.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       EstevaoWeb.Telemetry,
-      # Start the Ecto repository
       Estevao.Repo,
-      # Start the PubSub system
+      {DNSCluster, query: Application.get_env(:estevao, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Estevao.PubSub},
-      # Start Finch
+      # Start the Finch HTTP client for sending emails
       {Finch, name: Estevao.Finch},
-      # Start the Endpoint (http/https)
+      # Start to serve requests, typically the last entry
       EstevaoWeb.Endpoint
-      # Start a worker by calling: Estevao.Worker.start_link(arg)
-      # {Estevao.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

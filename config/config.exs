@@ -9,11 +9,12 @@ import Config
 
 config :estevao,
   ecto_repos: [Estevao.Repo],
-  generators: [binary_id: true]
+  generators: [binary_id: true, timestamp_type: :utc_datetime]
 
 # Configures the endpoint
 config :estevao, EstevaoWeb.Endpoint,
   url: [host: "localhost"],
+  adapter: Phoenix.Endpoint.Cowboy2Adapter,
   render_errors: [
     formats: [html: EstevaoWeb.ErrorHTML, json: EstevaoWeb.ErrorJSON],
     layout: false

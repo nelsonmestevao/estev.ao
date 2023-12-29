@@ -44,9 +44,9 @@ defmodule Estevao.MixProject do
   defp deps do
     [
       # web
-      {:phoenix, "~> 1.7.7"},
+      {:phoenix, "~> 1.7.10"},
       {:phoenix_html, "~> 3.3"},
-      {:phoenix_live_view, "~> 0.19.0"},
+      {:phoenix_live_view, "~> 0.20.1"},
       {:plug_cowboy, "~> 2.5"},
 
       # graphql
@@ -65,21 +65,22 @@ defmodule Estevao.MixProject do
       # i18n
       {:gettext, "~> 0.20"},
 
-      # json
+      # utilities
       {:jason, "~> 1.2"},
+      {:nanoid, "~> 2.1.0"},
+      {:utilx, "~> 0.4.0"},
+
+      # clustering
+      {:dns_cluster, "~> 0.1.1"},
 
       # monitoring
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      {:phoenix_live_dashboard, "~> 0.8.0"},
+      {:phoenix_live_dashboard, "~> 0.8.2"},
       {:ecto_psql_extras, "~> 0.7.12"},
 
-      # utilities
-      {:utilx, "~> 0.4.0"},
-      {:nanoid, "~> 2.1.0"},
-
       # assets
-      {:esbuild, "~> 0.7", runtime: Mix.env() == :dev},
+      {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
 
       # development
