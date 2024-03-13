@@ -20,6 +20,22 @@ if System.get_env("PHX_SERVER") do
   config :estevao, EstevaoWeb.Endpoint, server: true
 end
 
+default_log_level =
+  case config_env() do
+    :prod ->
+      # Do not print debug messages in production
+      "info"
+
+    :test ->
+      # Print only warnings and errors during test
+      "warning"
+
+    _ ->
+      "all"
+  end
+
+config :logger, level: "LOG_LEVEL" |> System.get_env(default_log_level) |> String.to_atom()
+
 if config_env() == :prod do
   auth_username =
     System.get_env("AUTH_USERNAME") ||
