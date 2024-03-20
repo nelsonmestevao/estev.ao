@@ -45,7 +45,7 @@ defmodule Estevao.MixProject do
     [
       # web
       {:phoenix, "~> 1.7.10"},
-      {:phoenix_html, "~> 3.3"},
+      {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 0.20.1"},
       {:plug_cowboy, "~> 2.5"},
 
@@ -74,7 +74,7 @@ defmodule Estevao.MixProject do
       {:dns_cluster, "~> 0.1.1"},
 
       # monitoring
-      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:phoenix_live_dashboard, "~> 0.8.2"},
       {:ecto_psql_extras, "~> 0.7.12"},
