@@ -83,7 +83,8 @@ defmodule Estevao.MixProject do
       # assets
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
-      {:heroicons, github: "tailwindlabs/heroicons", tag: "v2.1.1", sparse: "optimized", app: false, compile: false, depth: 1},
+      {:heroicons,
+       github: "tailwindlabs/heroicons", tag: "v2.1.1", sparse: "optimized", app: false, compile: false, depth: 1},
 
       # development
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -132,7 +133,19 @@ defmodule Estevao.MixProject do
   end
 
   defp git_ref do
-    [_, ref_path] = ".git" |> Path.join("HEAD") |> File.read!() |> String.split()
-    ".git" |> Path.join("#{ref_path}") |> File.read!() |> String.trim()
+    ref = File.read!(".git/HEAD")
+
+    git_ref =
+      if String.contains?(ref, "ref:") do
+        ["ref:", ref_path] = String.split(ref)
+
+        ".git"
+        |> Path.join("#{ref_path}")
+        |> File.read!()
+      else
+        ref
+      end
+
+    String.trim(git_ref)
   end
 end
