@@ -9,7 +9,7 @@ defmodule EstevaoWeb.HealthCheckPlug do
   @version Mix.Project.config()[:version]
   @description Mix.Project.config()[:description]
   @env Mix.env()
-  @git_ref String.slice(Mix.Project.config()[:git_ref], 0, 8)
+  @git_ref "git" |> System.cmd(["rev-parse", "HEAD"]) |> elem(0) |> String.slice(0, 8)
 
   @impl true
   def init(opts), do: opts

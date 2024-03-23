@@ -12,7 +12,6 @@ defmodule Estevao.MixProject do
       name: @name,
       version: @version,
       description: @description,
-      git_ref: git_ref(),
       homepage_url: "https://estev.ao",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -130,22 +129,5 @@ defmodule Estevao.MixProject do
       "assets.build": ["tailwind estevao", "esbuild estevao"],
       "assets.deploy": ["tailwind estevao --minify", "esbuild estevao --minify", "phx.digest"]
     ]
-  end
-
-  defp git_ref do
-    ref = File.read!(".git/HEAD")
-
-    git_ref =
-      if String.contains?(ref, "ref:") do
-        ["ref:", ref_path] = String.split(ref)
-
-        ".git"
-        |> Path.join("#{ref_path}")
-        |> File.read!()
-      else
-        ref
-      end
-
-    String.trim(git_ref)
   end
 end
