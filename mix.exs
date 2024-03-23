@@ -44,10 +44,10 @@ defmodule Estevao.MixProject do
   defp deps do
     [
       # web
-      {:phoenix, "~> 1.7.10"},
+      {:phoenix, "~> 1.7.11"},
       {:phoenix_html, "~> 4.1"},
       {:phoenix_live_view, "~> 0.20.1"},
-      {:plug_cowboy, "~> 2.5"},
+      {:bandit, "~> 1.2"},
 
       # graphql
       {:absinthe, "~> 1.7"},
@@ -82,6 +82,7 @@ defmodule Estevao.MixProject do
       # assets
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+      {:heroicons, github: "tailwindlabs/heroicons", tag: "v2.1.1", sparse: "optimized", app: false, compile: false, depth: 1},
 
       # development
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -124,8 +125,8 @@ defmodule Estevao.MixProject do
         "credo --strict --all"
       ],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["tailwind default", "esbuild default"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.build": ["tailwind estevao", "esbuild estevao"],
+      "assets.deploy": ["tailwind estevao --minify", "esbuild estevao --minify", "phx.digest"]
     ]
   end
 end

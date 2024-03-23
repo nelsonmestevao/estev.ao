@@ -11,7 +11,7 @@ config :estevao, Estevao.Repo,
   hostname: "localhost",
   database: "estevao_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: 10
+  pool_size: System.schedulers_online() * 2
 
 config :estevao, :basic_auth,
   username: "test",
