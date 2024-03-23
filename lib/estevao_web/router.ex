@@ -23,8 +23,6 @@ defmodule EstevaoWeb.Router do
   scope "/api", EstevaoWeb do
     pipe_through :api
 
-    get "/", ApiController, :index
-
     scope "/links" do
       post "/", LinkController, :create
       get "/:slug", LinkController, :show
@@ -59,8 +57,6 @@ defmodule EstevaoWeb.Router do
 
       live_dashboard "/dashboard", metrics: EstevaoWeb.Telemetry
     end
-
-    get "/_version", ApiController, :version
 
     get "/:slug", RedirectController, :show
   end
