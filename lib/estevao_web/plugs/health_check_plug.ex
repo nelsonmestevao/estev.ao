@@ -17,6 +17,7 @@ defmodule EstevaoWeb.HealthCheckPlug do
   @impl true
   def call(%Plug.Conn{request_path: "/health"} = conn, _opts) do
     conn
+    |> put_resp_header("access-control-allow-origin", "*")
     |> send_resp(200, "OK")
     |> halt()
   end
