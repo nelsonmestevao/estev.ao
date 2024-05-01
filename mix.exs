@@ -68,7 +68,7 @@ defmodule Estevao.MixProject do
       # utilities
       {:jason, "~> 1.2"},
       {:nanoid, "~> 2.1.0"},
-      {:utilx, "~> 0.4.0"},
+      {:ex_toolkit, "~> 0.9.0"},
 
       # clustering
       {:dns_cluster, "~> 0.1.1"},
