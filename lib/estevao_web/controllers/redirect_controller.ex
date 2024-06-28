@@ -1,10 +1,10 @@
 defmodule EstevaoWeb.RedirectController do
   use EstevaoWeb, :controller
 
-  alias Estevao.Shortner.Services.VisitLink
+  alias Estevao.Shortner.Handlers.Links
 
   def show(conn, %{"slug" => slug}) do
-    case VisitLink.call(slug) do
+    case Links.visit_link(slug) do
       nil ->
         conn
         |> put_flash(:error, "Link not found")

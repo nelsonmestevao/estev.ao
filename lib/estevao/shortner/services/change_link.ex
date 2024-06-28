@@ -9,8 +9,11 @@ defmodule Estevao.Shortner.Services.ChangeLink do
       iex> Estevao.Shortner.Services.ChangeLink.call(link, attrs)
       #Ecto.Changeset<action: nil, changes: %{url: "https://new-example.com"}, errors: [], data: #Estevao.Shortner.Link<>, valid?: true>
   """
+
   alias Estevao.Shortner.Link
 
+  @spec call(Link.t()) :: Ecto.Changeset.t()
+  @spec call(Link.t(), map()) :: Ecto.Changeset.t()
   def call(%Link{} = link, attrs \\ %{}) do
     Link.create_changeset(link, attrs)
   end

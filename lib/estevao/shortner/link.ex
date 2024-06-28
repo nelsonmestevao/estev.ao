@@ -6,6 +6,8 @@ defmodule Estevao.Shortner.Link do
 
   import Estevao.Utils.Datafiles
 
+  @type slug :: String.t()
+
   @slug_alphabet "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
 
   schema "links" do

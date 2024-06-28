@@ -17,6 +17,7 @@ defmodule Estevao.Shortner.Services.CreateLink do
   alias Estevao.Repo
   alias Estevao.Shortner.Link
 
+  @spec call(map()) :: {:ok, Link.t()} | {:error, Ecto.Changeset.t()}
   def call(attrs) do
     %Link{}
     |> Link.create_changeset(attrs)

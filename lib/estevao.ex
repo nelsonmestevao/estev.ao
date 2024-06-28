@@ -14,6 +14,16 @@ defmodule Estevao do
       import Ecto.Changeset
       import ExToolkit.Ecto.Changeset
 
+      @type t :: %__MODULE__{
+              __meta__: Ecto.Schema.Metadata.t(),
+              id: id?()
+            }
+
+      @type t? :: nil | t()
+
+      @type id :: binary()
+      @type id? :: nil | id()
+
       @primary_key {:id, :binary_id, autogenerate: true}
       @foreign_key_type :binary_id
 

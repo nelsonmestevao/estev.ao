@@ -4,14 +4,6 @@ defmodule Estevao.Shortner.Services.VisitLink do
 
   The increment operation is performed asynchronously.
 
-  ## Params
-
-  - `slug`: A string representing the slug of the link.
-
-  ## Returns
-
-  - The `Link` struct if the link is found, `nil` if the link is not found.
-
   ## Example
 
       iex> VisitLink.call("some-slug")
@@ -23,6 +15,7 @@ defmodule Estevao.Shortner.Services.VisitLink do
   alias Estevao.Repo
   alias Estevao.Shortner.Link
 
+  @spec call(Link.slug()) :: Link.t?()
   def call(slug) do
     query =
       link_by_slug_query(slug)

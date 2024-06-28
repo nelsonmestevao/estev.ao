@@ -55,6 +55,7 @@ defmodule EstevaoWeb do
         layout: {EstevaoWeb.Layouts, :app}
 
       import EstevaoWeb.LiveHelpers
+      import ExToolkit.Kernel, only: [ok: 1, error: 1, noreply: 1]
 
       unquote(html_helpers())
     end
@@ -109,7 +110,7 @@ defmodule EstevaoWeb do
   end
 
   @doc """
-  When used, dispatch to the appropriate controller/view/etc.
+  When used, dispatch to the appropriate controller/live_view/etc.
   """
   defmacro __using__(which) when is_atom(which) do
     apply(__MODULE__, which, [])

@@ -44,17 +44,17 @@ defmodule Estevao.MixProject do
   defp deps do
     [
       # web
-      {:phoenix, "~> 1.7.11"},
+      {:phoenix, "~> 1.7.14"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_view, "~> 0.20.1"},
-      {:bandit, "~> 1.2"},
+      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:bandit, "~> 1.5"},
 
       # graphql
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
 
       # database
-      {:phoenix_ecto, "~> 4.4"},
+      {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.10"},
       {:postgrex, ">= 0.0.0"},
 
@@ -68,7 +68,7 @@ defmodule Estevao.MixProject do
       # utilities
       {:jason, "~> 1.2"},
       {:nanoid, "~> 2.1.0"},
-      {:ex_toolkit, "~> 0.9.6"},
+      {:ex_toolkit, "~> 0.9.7"},
 
       # clustering
       {:dns_cluster, "~> 0.1.1"},
@@ -76,14 +76,14 @@ defmodule Estevao.MixProject do
       # monitoring
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:phoenix_live_dashboard, "~> 0.8.2"},
-      {:ecto_psql_extras, "~> 0.7.12"},
+      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:ecto_psql_extras, "~> 0.8.0"},
 
       # assets
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
       {:heroicons,
-       github: "tailwindlabs/heroicons", tag: "v2.1.1", sparse: "optimized", app: false, compile: false, depth: 1},
+       github: "tailwindlabs/heroicons", tag: "v2.1.4", sparse: "optimized", app: false, compile: false, depth: 1},
 
       # development
       {:phoenix_live_reload, "~> 1.2", only: :dev},
