@@ -42,7 +42,8 @@ defmodule EstevaoWeb do
         formats: [:html, :json],
         layouts: [html: EstevaoWeb.Layouts]
 
-      import EstevaoWeb.Gettext
+      use Gettext, backend: EstevaoWeb.Gettext
+
       import Plug.Conn
 
       unquote(verified_routes())
@@ -86,9 +87,9 @@ defmodule EstevaoWeb do
 
   defp html_helpers do
     quote do
+      use Gettext, backend: EstevaoWeb.Gettext
       # Core UI components and translation
       import EstevaoWeb.CoreComponents
-      import EstevaoWeb.Gettext
       # HTML escaping functionality
       import Phoenix.HTML
 

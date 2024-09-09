@@ -16,7 +16,7 @@ defmodule EstevaoWeb.CoreComponents do
   """
   use Phoenix.Component
 
-  import EstevaoWeb.Gettext
+  use Gettext, backend: EstevaoWeb.Gettext
 
   alias Phoenix.HTML
   alias Phoenix.LiveView.JS
