@@ -5,7 +5,7 @@ defmodule EstevaoWeb.Gettext do
   By using [Gettext](https://hexdocs.pm/gettext),
   your module gains a set of macros for translations, for example:
 
-      use Gettext, backend: EstevaoWeb.Gettext
+      use EstevaoWeb.Gettext
 
       # Simple translation
       gettext("Here is the string to translate")
@@ -21,4 +21,10 @@ defmodule EstevaoWeb.Gettext do
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
   use Gettext.Backend, otp_app: :estevao
+
+  defmacro __using__(_opts \\ []) do
+    quote do
+      use Gettext, backend: EstevaoWeb.Gettext
+    end
+  end
 end

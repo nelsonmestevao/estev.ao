@@ -42,7 +42,7 @@ defmodule EstevaoWeb do
         formats: [:html, :json],
         layouts: [html: EstevaoWeb.Layouts]
 
-      use Gettext, backend: EstevaoWeb.Gettext
+      use EstevaoWeb.Gettext
 
       import Plug.Conn
 
@@ -87,7 +87,8 @@ defmodule EstevaoWeb do
 
   defp html_helpers do
     quote do
-      use Gettext, backend: EstevaoWeb.Gettext
+      use EstevaoWeb.Gettext
+
       # Core UI components and translation
       import EstevaoWeb.CoreComponents
       # HTML escaping functionality
