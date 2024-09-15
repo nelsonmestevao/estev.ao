@@ -20,8 +20,8 @@ defmodule EstevaoWeb.HomeLive.Index do
   @impl true
   def handle_event("validate", %{"link" => link_params}, socket) do
     changeset =
-      link_params
-      |> Links.change_link()
+      %Link{}
+      |> Links.change_link(link_params)
       |> Map.put(:action, :validate)
 
     socket
