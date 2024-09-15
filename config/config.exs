@@ -50,7 +50,7 @@ config :phoenix, :json_library, Jason
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.4.3",
+  version: "3.4.11",
   estevao: [
     args: ~w(
       --config=tailwind.config.js
