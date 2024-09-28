@@ -22,7 +22,7 @@ defmodule EstevaoWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :estevao,
-    gzip: false,
+    gzip: true,
     only: EstevaoWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
