@@ -85,8 +85,6 @@ if config_env() == :prod do
     username: auth_username,
     password: auth_password
 
-  # ssl: true,
-
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
   # want to use a different value for prod and you most likely don't want
