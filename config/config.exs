@@ -9,7 +9,7 @@ import Config
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.17.11",
+  version: "0.24.0",
   estevao: [
     args: ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -50,7 +50,7 @@ config :phoenix, :json_library, Jason
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.4.11",
+  version: "3.4.13",
   estevao: [
     args: ~w(
       --config=tailwind.config.js
