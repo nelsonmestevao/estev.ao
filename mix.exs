@@ -113,6 +113,7 @@ defmodule Estevao.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "clean.all": ["clean", "deps.clean --unlock --unused", "assets.clean"],
       "lint.credo": ["credo --strict --all"],
       "lint.dialyzer": ["dialyzer --format dialyxir"],
       lint: ["lint.dialyzer", "lint.credo"],
@@ -125,6 +126,7 @@ defmodule Estevao.MixProject do
         "test --warnings-as-errors",
         "credo --strict --all"
       ],
+      "assets.clean": ["phx.digest.clean"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind estevao", "esbuild estevao"],
       "assets.deploy": ["tailwind estevao --minify", "esbuild estevao --minify", "phx.digest"]
