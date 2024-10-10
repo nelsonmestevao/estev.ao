@@ -10,39 +10,6 @@ config :estevao, Estevao.Repo,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
-config :estevao, EstevaoWeb.Endpoint,
-  http: [ip: {127, 0, 0, 1}, port: 4000],
-  check_origin: false,
-  code_reloader: true,
-  # For development, we disable any cache and enable
-  # debugging and code reloading.
-  #
-  # The watchers configuration can be used to run external
-  # watchers to your application. For example, we can use it
-  # to bundle .js and .css sources.
-  debug_errors: true,
-  secret_key_base: "ePJxXibzUsc29ki318ERTYQNOaSPsVY8YQGCXsuhlUCuT7iO8KRh13H27vvXEIgV",
-  watchers: [
-    esbuild: {Esbuild, :install_and_run, [:estevao, ~w(--sourcemap=inline --watch)]},
-    tailwind: {Tailwind, :install_and_run, [:estevao, ~w(--watch)]}
-  ]
-
-config :estevao, EstevaoWeb.Endpoint,
-  live_reload: [
-    patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
-      ~r"lib/estevao_web/(controllers|live|components)/.*(ex|heex)$"
-    ]
-  ]
-
-config :estevao, :basic_auth,
-  username: "admin",
-  password: "admin"
-
-# Binding to loopback ipv4 address prevents access from other machines.
-# Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-
 # ## SSL Support
 #
 # In order to use HTTPS in development, a self-signed
@@ -65,8 +32,38 @@ config :estevao, :basic_auth,
 # If desired, both `http:` and `https:` keys can be
 # configured to run both http and https servers on
 # different ports.
+config :estevao, EstevaoWeb.Endpoint,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {127, 0, 0, 1}, port: 4000],
+  check_origin: false,
+  code_reloader: true,
+  # For development, we disable any cache and enable
+  # debugging and code reloading.
+  #
+  # The watchers configuration can be used to run external
+  # watchers to your application. For example, we can use it
+  # to bundle .js and .css sources.
+  debug_errors: true,
+  secret_key_base: "ePJxXibzUsc29ki318ERTYQNOaSPsVY8YQGCXsuhlUCuT7iO8KRh13H27vvXEIgV",
+  watchers: [
+    esbuild: {Esbuild, :install_and_run, [:estevao, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:estevao, ~w(--watch)]}
+  ]
 
 # Watch static and templates for browser reloading.
+config :estevao, EstevaoWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/gettext/.*(po)$",
+      ~r"lib/estevao_web/(controllers|live|components)/.*(ex|heex)$"
+    ]
+  ]
+
+config :estevao, :basic_auth,
+  username: "admin",
+  password: "admin"
 
 # Enable dev routes for dashboard and mailbox
 config :estevao, dev_routes: true
