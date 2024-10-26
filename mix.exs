@@ -46,7 +46,7 @@ defmodule Estevao.MixProject do
       # web
       {:phoenix, "~> 1.7.14"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_view, "~> 1.0.0-rc.6", override: true},
+      {:phoenix_live_view, "~> 1.0.0-rc.7", override: true},
       {:bandit, "~> 1.5"},
 
       # graphql
