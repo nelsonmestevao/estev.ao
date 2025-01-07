@@ -31,6 +31,7 @@ defmodule Estevao.Utils.Datafiles do
       iex> read_data_file!("test_data.txt")
       ["line1", "line2", "line3"]
   """
+  @spec read_data_file!(String.t()) :: [String.t()]
   def read_data_file!(file) do
     [:code.priv_dir(@otp_app), "repo", "data", file]
     |> Path.join()

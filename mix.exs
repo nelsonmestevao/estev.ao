@@ -94,9 +94,12 @@ defmodule Estevao.MixProject do
       # tools
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.30", only: :dev, runtime: false},
       {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false}
+      {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
+      {:doctest_formatter, "~> 0.3.1", only: [:dev, :test], runtime: false},
+      {:ex_doc, "~> 0.29", only: :dev, runtime: false},
+      {:sobelow, "~> 0.12", only: [:dev, :test], runtime: false},
+      {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -113,10 +116,11 @@ defmodule Estevao.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "clean.all": ["clean", "deps.clean --unlock --unused", "assets.clean"],
       "lint.credo": ["credo --strict --all"],
       "lint.dialyzer": ["dialyzer --format dialyxir"],
-      lint: ["lint.dialyzer", "lint.credo"],
+      "lint.sobelow": ["sobelow --threshold low --ignore Config.HTTPS --ignore Config.CSP"],
+      lint: ["lint.dialyzer", "lint.credo", "lint.sobelow"],
+      "clean.all": ["clean", "deps.clean --unlock --unused", "assets.clean"],
       check: [
         "clean",
         "deps.unlock --check-unused",

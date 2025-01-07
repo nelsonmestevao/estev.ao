@@ -12,44 +12,43 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-22.04]
-        otp: [26.x]
-        elixir: [1.15.x]
 
     services:
       db:
-        image: postgres:15
-        ports:
-          - 5432:5432
+        image: postgres:16
         env:
           POSTGRES_USERNAME: postgres
           POSTGRES_PASSWORD: postgres
           POSTGRES_HOSTNAME: 0.0.0.0
+        ports:
+          - 5432:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
 
-    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}} (${{ matrix.os }})
+    name: OTP / Elixir (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
+    env:
+      MIX_ENV: test
 
     steps:
       - name: ☁️ Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: 💧 Setup Elixir ${{ matrix.elixir }} (OTP ${{matrix.otp}})
+      - name: 💧 Setup Elixir
         uses: marmelasoft/elixir-setup@main
         with:
-          otp-version: ${{ matrix.otp }}
-          elixir-version: ${{ matrix.elixir }}
-          build-flags: --all-warnings --warnings-as-errors
-        env:
-          MIX_ENV: test
+          version-file: .tool-versions
+          version-type: strict
+          cache-plts: true
 
       - name: 🔬 Run the tests
-        run: mix test --warnings-as-errors
-        env:
-          MIX_ENV: test
+        run: mix test --all-warnings --warnings-as-errors
+
+      - name: 🔍 Analyze the code
+        run: mix dialyzer --format github
 
       - name: 🧹 Check code formating
         run: mix format --check-formatted
@@ -57,4 +56,11 @@ jobs:
 
       - name: 💡 Lint the code
         run: mix credo --strict --all
+        if: always()
+
+      - name: 🛡️ Search vulnerabilities
+        run: |
+          mix hex.audit
+          mix deps.audit
+          mix sobelow --threshold low --ignore Config.HTTPS
         if: always()
