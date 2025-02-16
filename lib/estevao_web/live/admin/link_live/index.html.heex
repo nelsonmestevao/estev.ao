@@ -12,9 +12,9 @@
   rows={@streams.links}
   row_click={fn {_id, link} -> JS.navigate(~p"/admin/links/#{link}") end}
 >
-  <:col :let={{_id, link}} label="Slug"><%= link.slug %></:col>
-  <:col :let={{_id, link}} label="Url"><%= link.url %></:col>
-  <:col :let={{_id, link}} label="Visits"><%= link.visits %></:col>
+  <:col :let={{_id, link}} label="Slug">{link.slug}</:col>
+  <:col :let={{_id, link}} label="Url">{link.url}</:col>
+  <:col :let={{_id, link}} label="Visits">{link.visits}</:col>
   <:action :let={{_id, link}}>
     <div class="sr-only">
       <.link navigate={~p"/admin/links/#{link}"}>Show</.link>

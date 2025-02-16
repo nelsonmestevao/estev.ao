@@ -1,5 +1,5 @@
 <.header>
-  Link <%= @link.id %>
+  Link {@link.id}
   <:subtitle>This is a link record from your database.</:subtitle>
   <:actions>
     <.link patch={~p"/admin/links/#{@link}/show/edit"} phx-click={JS.push_focus()}>
@@ -9,9 +9,9 @@
 </.header>
 
 <.list>
-  <:item title="Slug"><%= @link.slug %></:item>
-  <:item title="Url"><%= @link.url %></:item>
-  <:item title="Visits"><%= @link.visits %></:item>
+  <:item title="Slug">{@link.slug}</:item>
+  <:item title="Url">{@link.url}</:item>
+  <:item title="Visits">{@link.visits}</:item>
 </.list>
 
 <.back navigate={~p"/admin/links"}>Back to links</.back>

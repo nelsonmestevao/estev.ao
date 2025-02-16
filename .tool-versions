@@ -1,3 +1,4 @@
 elixir 1.18.2-otp-27
-erlang 27.2
-nodejs 22.9.0
+erlang 27.2.2
+nodejs 22.14.0
+ruby   3.4.2

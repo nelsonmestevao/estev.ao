@@ -1,6 +1,14 @@
 *.sql
 .elixir_ls
 
+# Ignore personal development files
+.iex.local.exs
+
+# Ignore secret files
+.env
+.env.*
+!.env.*.sample
+
 # The directory Mix will write compiled artifacts to.
 /_build/
 
