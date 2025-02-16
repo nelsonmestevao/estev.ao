@@ -41,14 +41,6 @@ if not_installed "docker"; then
   exit 1
 fi
 
-if not_installed "docker-compose"; then
-  log_error "We are using docker-compose to setup a local instance of the database, since it
-  was not found on your system we cannot do it. Please install it and run this
-  script again."
-
-  exit 1
-fi
-
 DOCKER_CONFIG_PATH=".config/docker"
 ENV=${MIX_ENV:-dev}
 OS=$(get_os_name)
