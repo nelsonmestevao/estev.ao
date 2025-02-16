@@ -1,0 +1,2 @@
+source .env
+kamal deploy

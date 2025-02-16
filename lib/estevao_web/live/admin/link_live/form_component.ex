@@ -9,7 +9,7 @@ defmodule EstevaoWeb.LinkLive.FormComponent do
     ~H"""
     <div>
       <.header>
-        <%= @title %>
+        {@title}
         <:subtitle>Use this form to manage link records in your database.</:subtitle>
       </.header>
 

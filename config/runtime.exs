@@ -36,6 +36,13 @@ default_log_level =
 
 config :logger, level: "LOG_LEVEL" |> System.get_env(default_log_level) |> String.to_atom()
 
+if config_env() in [:dev, :test] do
+  commit_hash = "git" |> System.cmd(["rev-parse", "HEAD"]) |> elem(0) |> String.trim()
+
+  config :estevao,
+    commit_hash: commit_hash
+end
+
 if config_env() == :prod do
   auth_username =
     System.get_env("AUTH_USERNAME") ||
@@ -92,6 +99,9 @@ if config_env() == :prod do
   # to check this value into version control, so we use an environment
   # variable instead.
   config :estevao, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
+
+  config :estevao,
+    commit_hash: System.fetch_env!("KAMAL_VERSION")
 
   # Enable IPv6 and bind on all interfaces.
   # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

@@ -7,6 +7,13 @@ defmodule Estevao do
   if it comes from the database, an external API or others.
   """
 
+  @app Mix.Project.config()[:app]
+  @version Mix.Project.config()[:version]
+  @env Mix.env()
+
+  def version, do: "#{@version}-#{@env}+#{String.slice(commit_hash(), 0, 8)}"
+  def commit_hash, do: Application.get_env(@app, :commit_hash)
+
   def schema do
     quote do
       use Ecto.Schema

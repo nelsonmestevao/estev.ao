@@ -6,10 +6,7 @@ defmodule EstevaoWeb.HealthCheckPlug do
   import Plug.Conn
 
   @app Mix.Project.config()[:app]
-  @version Mix.Project.config()[:version]
   @description Mix.Project.config()[:description]
-  @env Mix.env()
-  @git_ref "SOURCE_VERSION" |> System.get_env("") |> String.slice(0, 8)
 
   @impl true
   def init(opts), do: opts
@@ -22,22 +19,16 @@ defmodule EstevaoWeb.HealthCheckPlug do
     |> halt()
   end
 
-  @content "#{@version}-#{@env}+#{@git_ref}"
   @impl true
   def call(%Plug.Conn{request_path: "/_version"} = conn, _opts) do
     conn
-    |> send_resp(200, @content)
+    |> send_resp(200, Estevao.version())
     |> halt()
   end
 
-  @content Jason.encode!(%{
-             app: @app,
-             version: @version,
-             description: @description,
-             build: "#{@env}+#{@git_ref}"
-           })
+  @content Jason.encode!(%{app: @app, description: @description})
   @impl true
-  def call(%Plug.Conn{request_path: "/_version.json"} = conn, _opts) do
+  def call(%Plug.Conn{request_path: "/_about.json"} = conn, _opts) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, @content)

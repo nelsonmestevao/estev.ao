@@ -32,10 +32,10 @@
 <div class="relative bg-gradient-to-r from-purple-700 to-cyan-500 text-center text-white">
   <div class="inner-header h-[60vh] m-0 flex w-full flex-col items-center justify-center p-0">
     <h1 class="z-10 mx-auto my-2 text-center text-5xl">
-      <%= @name %>
+      {@name}
     </h1>
     <p class="z-10 mx-auto my-2 text-center text-3xl">
-      <%= @description %>
+      {@description}
     </p>
 
     <.form
@@ -63,7 +63,7 @@
           class="absolute mt-1 flex gap-3 text-sm leading-6 text-rose-500 phx-no-feedback:hidden"
         >
           <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
-          <%= translate_error(error_msg) %>
+          {translate_error(error_msg)}
         </p>
       </div>
       <div class="flex w-full flex-col items-center md:flex-row lg:w-2/5 lg:items-center lg:space-x-4 lg:space-y-0">
@@ -81,7 +81,7 @@
             class="absolute mt-3 flex gap-3 text-sm leading-6 text-rose-500 phx-no-feedback:hidden"
           >
             <.icon name="hero-exclamation-circle-mini" class="mt-0.5 h-5 w-5 flex-none" />
-            <%= translate_error(error_msg) %>
+            {translate_error(error_msg)}
           </p>
         </div>
         <div class="mt-4 w-full rounded-md p-2 text-sm outline-none md:mt-0 lg:w-2/5">
@@ -97,7 +97,7 @@
 
     <div :if={@result} class="mt-4 w-full space-x-8 rounded-md p-2 text-sm outline-none">
       <a class="text-lg underline" href={@result.link}>
-        <%= String.split(@result.link, "://") |> Enum.at(1) %>
+        {String.split(@result.link, "://") |> Enum.at(1)}
       </a>
       <button
         class={["rounded-lg bg-slate-900 px-3 py-2 uppercase hover:bg-slate-950 phx-submit-loading:opacity-75", "text-sm font-semibold leading-6 text-white active:text-white/80"]}
