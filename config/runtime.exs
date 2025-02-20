@@ -101,7 +101,7 @@ if config_env() == :prod do
   config :estevao, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :estevao,
-    commit_hash: System.fetch_env!("KAMAL_VERSION")
+    commit_hash: System.fetch_env!("SOURCE_VERSION")
 
   # Enable IPv6 and bind on all interfaces.
   # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
