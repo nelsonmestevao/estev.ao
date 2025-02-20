@@ -53,6 +53,7 @@ env:
     PHX_HOST: estev.ao
     DB_HOST: estevao-db
   secret:
+    - SOURCE_VERSION
     - DATABASE_URL
     - SECRET_KEY_BASE
     - AUTH_USERNAME
