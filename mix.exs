@@ -71,7 +71,7 @@ defmodule Estevao.MixProject do
       {:ex_toolkit, "~> 0.9.7"},
 
       # clustering
-      {:dns_cluster, "~> 0.1.1"},
+      {:dns_cluster, "~> 0.2.0"},
 
       # monitoring
       {:telemetry_metrics, "~> 1.0"},
@@ -81,7 +81,7 @@ defmodule Estevao.MixProject do
 
       # assets
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
-      {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
+      {:tailwind, "~> 0.3.0", runtime: Mix.env() == :dev},
       {:heroicons,
        github: "tailwindlabs/heroicons", tag: "v2.1.4", sparse: "optimized", app: false, compile: false, depth: 1},
 
