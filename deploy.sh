@@ -1,2 +1,3 @@
 source .env
-kamal deploy
+kamal app stop
+kamal redeploy
