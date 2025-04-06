@@ -92,6 +92,7 @@ defmodule Estevao.MixProject do
       {:floki, ">= 0.30.0", only: :test},
 
       # tools
+      {:igniter, "~> 0.5", only: [:dev, :test]},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
