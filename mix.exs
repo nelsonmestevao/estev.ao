@@ -1,15 +1,13 @@
 defmodule Estevao.MixProject do
   use Mix.Project
 
-  @app :estevao
-  @name "estev.ao"
   @version "1.0.0"
   @description "A short and simple redirecting service"
 
   def project do
     [
-      app: @app,
-      name: @name,
+      app: :estevao,
+      name: "estev.ao",
       version: @version,
       description: @description,
       homepage_url: "https://estev.ao",
