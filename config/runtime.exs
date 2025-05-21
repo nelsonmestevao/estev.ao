@@ -86,7 +86,7 @@ if config_env() == :prod do
       ip: {0, 0, 0, 0, 0, 0, 0, 0},
       port: port
     ],
-    check_origin: ["http://#{host}", "https://#{host}"],
+    # check_origin: ["http://#{host}", "https://#{host}"],
     secret_key_base: secret_key_base
 
   config :estevao, :basic_auth,

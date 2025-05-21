@@ -8,13 +8,16 @@ image: nelsonmestevao/estevao
 servers:
   web:
     hosts:
-      - hades.estevao.org
-    options:
-      publish:
-        - 8070:4000
-    proxy: false
+      - plutus.estevao.org
 
-proxy: false
+proxy:
+  ssl: false
+  host: estev.ao
+  app_port: 4000
+  healthcheck:
+    path: /health
+    interval: 10
+    timeout: 60
 
 # Credentials for your image host.
 registry:
@@ -55,7 +58,7 @@ env:
 #   shell: app exec --interactive --reuse "bash"
 
 ssh:
-  user: nelson
+  user: root
 
 # Use a persistent storage volume.
 #
@@ -77,7 +80,7 @@ ssh:
 accessories:
   db:
     image: postgres:17
-    host: hades.estevao.org
+    host: plutus.estevao.org
     port: "127.0.0.1:7432:5432"
     env:
       clear:
