@@ -13,7 +13,7 @@ cd "${BASE_DIR}/.." || exit 127
 [ -f scripts/utils.sh ] && . scripts/utils.sh
 
 PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
-VERSION=0.13.0
+VERSION=0.16.0
 
 KAMAL_BIN="$(ruby -e 'puts Gem.user_dir + "/bin/kamal"')"
 

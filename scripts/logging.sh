@@ -20,6 +20,10 @@ LOG_LEVELS=([DEBUG]=0 [INFO]=1 [WARN]=3 [ERROR]=4)
 # Set default log level
 LOG_LEVEL=${LOG_LEVEL:-"DEBUG"}
 
+function exit_message() {
+  echo -e "\n ${RED}>>>${RESET} ${BOLD}${YELLOW}$1${RESET} ${RED}⨯${RESET}\n"
+}
+
 function __log() {
   local LEVEL="$1"
   local LABEL="$2"
@@ -45,7 +49,7 @@ function log_error() {
 }
 
 function log_warn() {
-  __log "WARN" "WARN" "$ORANGE" "$@"
+  __log "WARN" "WARN" "$YELLOW" "$@"
 }
 
 function log_success() {
@@ -67,7 +71,7 @@ function log_info() {
         break
         ;;
       -*) # unsupported flags
-        echo "${RED}Error${RED}: Unsupported flag $1" >&2
+        exit_message "Unsupported flag '$1' in 'log_info()' function"
         exit 1
         ;;
       *) # preserve positional arguments
@@ -81,7 +85,7 @@ function log_info() {
 }
 
 function log_debug() {
-  __log "DEBUG" "DEBUG" "$PURPLE" "$@"
+  __log "DEBUG" "DEBUG" "$MAGENTA" "$@"
 }
 
-([ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.13.0) || true
+([ "$0" = "${BASH_SOURCE[0]}" ] && display_version 0.16.0) || true
