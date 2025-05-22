@@ -12,12 +12,11 @@ servers:
 
 proxy:
   ssl: false
-  host: estev.ao
+  hosts:
+    - estev.ao
   app_port: 4000
   healthcheck:
     path: /health
-    interval: 10
-    timeout: 60
 
 # Credentials for your image host.
 registry:
@@ -58,7 +57,7 @@ env:
 #   shell: app exec --interactive --reuse "bash"
 
 ssh:
-  user: root
+  user: nelson
 
 # Use a persistent storage volume.
 #

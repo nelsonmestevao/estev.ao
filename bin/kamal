@@ -47,4 +47,6 @@ if [[ ! -x "$KAMAL_BIN" ]]; then
   exit 1
 fi
 
+load_env_file .env
+
 exec "$KAMAL_BIN" "$@"
