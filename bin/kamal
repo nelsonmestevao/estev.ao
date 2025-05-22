@@ -1,11 +1,49 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
+set -Eeuo pipefail
+
+BASE_DIR=$(dirname "${BASH_SOURCE[0]:-$0}")
+cd "${BASE_DIR}/.." || exit 127
+
+# shellcheck source=../scripts/helpers.sh
+[ -f scripts/helpers.sh ] && . scripts/helpers.sh
+# shellcheck source=../scripts/logging.sh
+[ -f scripts/logging.sh ] && . scripts/logging.sh
+# shellcheck source=../scripts/utils.sh
+[ -f scripts/utils.sh ] && . scripts/utils.sh
+
+PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
+VERSION=0.13.0
 
 KAMAL_BIN="$(ruby -e 'puts Gem.user_dir + "/bin/kamal"')"
 
+function display_help() {
+  cat <<EOF
+  This is a wrapper for the Kamal CLI, ensuring it runs from your user gem installation.
+
+  $(help_title_section Usage)
+    ${PROGRAM} [options] <kamal command...>
+    ${PROGRAM} help     Learn more about Kamal.
+
+  $(help_title_section Options)
+    -h --help         Show this screen.
+    -v --version      Show version.
+EOF
+}
+
+case "${1:-}" in
+  -h | --help)
+    display_help
+    exit 0
+    ;;
+  -v | --version)
+    display_version "${VERSION}" "${PROGRAM}"
+    exit 0
+    ;;
+esac
+
 if [[ ! -x "$KAMAL_BIN" ]]; then
-  echo "executable not found at $KAMAL_BIN" >&2
+  log_error "executable not found at $KAMAL_BIN"
   exit 1
 fi
 
