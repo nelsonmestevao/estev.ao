@@ -1,2 +1,1 @@
-source .env
-kamal app exec ./bin/migrate
+bin/kamal app exec ./bin/migrate
