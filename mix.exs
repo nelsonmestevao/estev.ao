@@ -66,7 +66,7 @@ defmodule Estevao.MixProject do
       # utilities
       {:jason, "~> 1.2"},
       {:nanoid, "~> 2.1.0"},
-      {:ex_toolkit, "~> 0.9.7"},
+      {:ex_toolkit, "~> 0.12.4"},
 
       # clustering
       {:dns_cluster, "~> 0.2.0"},
@@ -95,7 +95,7 @@ defmodule Estevao.MixProject do
       {:dialyxir, "~> 1.3", only: [:dev, :test], runtime: false},
       {:styler, "~> 1.0", only: [:dev, :test], runtime: false},
       {:tailwind_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
-      {:doctest_formatter, "~> 0.3.1", only: [:dev, :test], runtime: false},
+      {:doctest_formatter, "~> 0.4.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.29", only: :dev, runtime: false},
       {:sobelow, "~> 0.12", only: [:dev, :test], runtime: false},
       {:mix_audit, "~> 2.1", only: [:dev, :test], runtime: false}
