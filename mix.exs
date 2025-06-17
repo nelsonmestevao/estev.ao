@@ -121,13 +121,14 @@ defmodule Estevao.MixProject do
       lint: ["lint.dialyzer", "lint.credo", "lint.sobelow"],
       "clean.all": ["clean", "deps.clean --unlock --unused", "assets.clean"],
       check: [
+        "deps.unlock --check-unused",
+        "deps.audit --format human",
+        "hex.audit",
         "clean",
-        "deps.unlock --check-unused",
-        "compile --warnings-as-errors",
+        "compile --all-warnings --warnings-as-errors",
         "format --check-formatted",
-        "deps.unlock --check-unused",
-        "test --warnings-as-errors",
-        "credo --strict --all"
+        "credo --strict --all",
+        "test --warnings-as-errors"
       ],
       "assets.clean": ["phx.digest.clean"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
