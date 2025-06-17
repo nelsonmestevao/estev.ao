@@ -64,3 +64,6 @@ jobs:
           mix deps.audit
           mix sobelow --threshold low --ignore Config.HTTPS
         if: always()
+
+      - name: ♻️ Check unused dependencies
+        run: mix deps.unlock --check-unused
