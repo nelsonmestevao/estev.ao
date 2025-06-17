@@ -16,6 +16,7 @@ defmodule Estevao.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
+      dialyzer: dialyzer(),
       preferred_cli_env: [
         check: :test
       ]
@@ -35,6 +36,15 @@ defmodule Estevao.MixProject do
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
+
+  defp dialyzer do
+    [
+      list_unused_filters: true,
+      plt_add_deps: :apps_tree,
+      plt_add_apps: [:eex, :ex_unit, :iex, :mix],
+      plt_file: {:no_warn, "priv/plts/elixir-#{System.version()}-erlang-otp-#{System.otp_release()}.plt"}
+    ]
+  end
 
   # Specifies your project dependencies.
   #
