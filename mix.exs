@@ -16,16 +16,14 @@ defmodule Estevao.MixProject do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       aliases: aliases(),
-      dialyzer: dialyzer(),
-      preferred_cli_env: [
-        check: :test
-      ]
+      dialyzer: dialyzer()
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
+  def cli do
+    [preferred_envs: [check: :test]]
+  end
+
   def application do
     [
       mod: {Estevao.Application, []},
@@ -33,7 +31,6 @@ defmodule Estevao.MixProject do
     ]
   end
 
-  # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_), do: ["lib"]
 
