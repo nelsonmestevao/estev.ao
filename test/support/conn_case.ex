@@ -25,6 +25,7 @@ defmodule EstevaoWeb.ConnCase do
       # Import conveniences for testing with connections
       import EstevaoWeb.ConnCase
       import Phoenix.ConnTest
+      import Phoenix.LiveViewTest
       import Plug.Conn
 
       @endpoint EstevaoWeb.Endpoint
