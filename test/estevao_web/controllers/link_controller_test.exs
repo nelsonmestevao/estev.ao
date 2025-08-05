@@ -1,5 +1,5 @@
 defmodule EstevaoWeb.LinkControllerTest do
-  use EstevaoWeb.ConnCase
+  use EstevaoWeb.ConnCase, async: true
 
   @create_attrs %{
     url: "https://example.com",

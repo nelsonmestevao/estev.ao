@@ -1,5 +1,5 @@
 defmodule EstevaoWeb.SchemaTest do
-  use EstevaoWeb.ConnCase
+  use EstevaoWeb.ConnCase, async: true
 
   import Estevao.ShortnerFixtures
 

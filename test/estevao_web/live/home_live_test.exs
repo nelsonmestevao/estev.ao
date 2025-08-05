@@ -1,5 +1,5 @@
 defmodule EstevaoWeb.HomeLiveTest do
-  use EstevaoWeb.ConnCase
+  use EstevaoWeb.ConnCase, async: true
 
   import Estevao.ShortnerFixtures
 
