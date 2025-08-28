@@ -24,11 +24,11 @@
       perSystem = _: {
         beamWorkspace = {
           enable = true;
-          # devShell = {
+          devShell = {
           #   languageServers.elixir = true;
           #   languageServers.erlang = false;
-          #   phoenix = true;
-          # };
+            phoenix = true;
+          };
           versions = {
             fromToolVersions = ./.tool-versions;
           };
