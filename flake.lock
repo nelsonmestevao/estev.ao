@@ -10,15 +10,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1756346526,
-        "narHash": "sha256-ejG8c5hp6OsiPyFeM0GBbx3ytkoA8XWZR6SEXwx2xX8=",
-        "owner": "mhanberg",
+        "lastModified": 1758135508,
+        "narHash": "sha256-ZJ5graJeVRYmtiFPzAGXdIlEYcxPcwZIff3FJIFmjrw=",
+        "owner": "elixir-tools",
         "repo": "nix-beam-flakes",
-        "rev": "00ec29d1b20cad1c3b8736b373eedcab7f049a13",
+        "rev": "af64622294243bbbfd732368eda886370ed1e1e3",
         "type": "github"
       },
       "original": {
-        "owner": "mhanberg",
+        "owner": "elixir-tools",
         "repo": "nix-beam-flakes",
         "type": "github"
       }
