@@ -7,8 +7,6 @@
 # General application configuration
 import Config
 
-config :estevao, async_tasks: false
-
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.24.0",
@@ -37,6 +35,8 @@ config :estevao, EstevaoWeb.Endpoint,
   ],
   pubsub_server: Estevao.PubSub,
   live_view: [signing_salt: "Ws6MhV5O"]
+
+config :estevao, async_tasks: false
 
 config :estevao,
   ecto_repos: [Estevao.Repo],

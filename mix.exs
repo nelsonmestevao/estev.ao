@@ -91,6 +91,7 @@ defmodule Estevao.MixProject do
        github: "tailwindlabs/heroicons", tag: "v2.1.4", sparse: "optimized", app: false, compile: false, depth: 1},
 
       # development
+      {:testcontainers, "~> 2.1", only: [:test, :dev]},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
 
       # testing
@@ -121,7 +122,9 @@ defmodule Estevao.MixProject do
       "ecto.seed": ["run priv/repo/seeds.exs"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "ecto.seed"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "test.prepare": ["ecto.create --quiet", "ecto.migrate --quiet"],
+      "test.run": ["test.prepare", "test"],
+      test: ["testcontainers.run test.run"],
       "lint.credo": ["credo --strict --all"],
       "lint.dialyzer": ["dialyzer --format dialyxir"],
       "lint.sobelow": ["sobelow --threshold low --ignore Config.HTTPS --ignore Config.CSP"],

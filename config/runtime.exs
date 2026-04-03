@@ -39,11 +39,15 @@ config :logger, level: "LOG_LEVEL" |> System.get_env(default_log_level) |> Strin
 if config_env() in [:dev, :test] do
   commit_hash = "git" |> System.cmd(["rev-parse", "HEAD"]) |> elem(0) |> String.trim()
 
-  config :estevao, Estevao.Repo,
-    username: "postgres",
-    password: "postgres",
-    hostname: "localhost",
-    database: "estevao_#{config_env()}#{System.get_env("MIX_TEST_PARTITION")}"
+  if url = System.get_env("DATABASE_URL") do
+    config :estevao, Estevao.Repo, url: url
+  else
+    config :estevao, Estevao.Repo,
+      username: "postgres",
+      password: "postgres",
+      hostname: "localhost",
+      database: "estevao_#{config_env()}#{System.get_env("MIX_TEST_PARTITION")}"
+  end
 
   config :estevao,
     commit_hash: commit_hash
