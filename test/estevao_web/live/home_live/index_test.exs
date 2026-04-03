@@ -1,4 +1,4 @@
-defmodule EstevaoWeb.HomeLiveTest do
+defmodule EstevaoWeb.HomeLive.IndexTest do
   use EstevaoWeb.ConnCase, async: true
 
   import Estevao.ShortnerFixtures

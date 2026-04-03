@@ -7,6 +7,8 @@
 # General application configuration
 import Config
 
+config :estevao, async_tasks: false
+
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.24.0",

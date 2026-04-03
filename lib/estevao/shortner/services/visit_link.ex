@@ -20,9 +20,7 @@ defmodule Estevao.Shortner.Services.VisitLink do
     query =
       link_by_slug_query(slug)
 
-    Task.start(fn ->
-      Repo.update_all(query, inc: [visits: 1])
-    end)
+    update_visits(query)
 
     Repo.one(query)
   end
@@ -30,5 +28,15 @@ defmodule Estevao.Shortner.Services.VisitLink do
   defp link_by_slug_query(slug) do
     from l in Link,
       where: l.slug == ^slug
+  end
+
+  defp update_visits(query) do
+    if Application.get_env(:estevao, :async_tasks, true) do
+      Task.start(fn ->
+        Repo.update_all(query, inc: [visits: 1])
+      end)
+    else
+      Repo.update_all(query, inc: [visits: 1])
+    end
   end
 end

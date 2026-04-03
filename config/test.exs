@@ -10,10 +10,6 @@ import Config
 config :estevao, Estevao.Mailer, adapter: Swoosh.Adapters.Test
 
 config :estevao, Estevao.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
-  database: "estevao_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   # We don't run a server during test. If one is required,
   # you can enable the server option below.
