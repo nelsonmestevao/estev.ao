@@ -11,7 +11,7 @@ defmodule Estevao.MixProject do
       version: @version,
       description: @description,
       homepage_url: "https://estev.ao",
-      elixir: "~> 1.18",
+      elixir: "~> 1.19",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       deps: deps(),

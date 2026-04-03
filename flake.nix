@@ -2,13 +2,13 @@
   description = "Development Environment";
 
   inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    flake-parts.url = "github:hercules-ci/flake-parts";
     beam-flakes = {
       url = "github:elixir-tools/nix-beam-flakes";
       inputs.flake-parts.follows = "flake-parts";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-parts.url = "github:hercules-ci/flake-parts";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
   };
 
   outputs = inputs @ {
@@ -21,13 +21,16 @@
 
       systems = ["aarch64-darwin" "x86_64-darwin" "x86_64-linux"];
 
-      perSystem = _: {
+      perSystem = {pkgs, ...}: {
         beamWorkspace = {
           enable = true;
           devShell = {
           #   languageServers.elixir = true;
           #   languageServers.erlang = false;
             phoenix = true;
+             extraPackages = with pkgs; [
+                ruby_4_0
+            ];
           };
           versions = {
             fromToolVersions = ./.tool-versions;
