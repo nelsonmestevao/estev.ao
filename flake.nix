@@ -22,14 +22,16 @@
       systems = ["aarch64-darwin" "x86_64-darwin" "x86_64-linux"];
 
       perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+
         beamWorkspace = {
           enable = true;
           devShell = {
-          #   languageServers.elixir = true;
-          #   languageServers.erlang = false;
+            #   languageServers.elixir = true;
+            #   languageServers.erlang = false;
             phoenix = true;
-             extraPackages = with pkgs; [
-                ruby_4_0
+            extraPackages = with pkgs; [
+              ruby_4_0
             ];
           };
           versions = {
