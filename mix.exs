@@ -124,7 +124,7 @@ defmodule Estevao.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       "test.prepare": ["ecto.create --quiet", "ecto.migrate --quiet"],
       "test.run": ["test.prepare", "test"],
-      test: ["testcontainers.run test.run"],
+      test: ["with_containers test.run"],
       "lint.credo": ["credo --strict --all"],
       "lint.dialyzer": ["dialyzer --format dialyxir"],
       "lint.sobelow": ["sobelow --threshold low --ignore Config.HTTPS --ignore Config.CSP"],
