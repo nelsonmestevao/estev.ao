@@ -29,7 +29,7 @@
   }
 </style>
 <.flash_group flash={@flash} />
-<div class="relative bg-gradient-to-r from-purple-700 to-cyan-500 text-center text-white">
+<div class="bg-linear-to-r relative from-purple-700 to-cyan-500 text-center text-white">
   <div class="inner-header h-[60vh] m-0 flex w-full flex-col items-center justify-center p-0">
     <h1 class="z-10 mx-auto my-2 text-center text-5xl">
       {@name}
@@ -84,7 +84,7 @@
             {translate_error(error_msg)}
           </p>
         </div>
-        <div class="mt-4 w-full rounded-md p-2 text-sm outline-none md:mt-0 lg:w-2/5">
+        <div class="mt-4 w-full rounded-md p-2 text-sm outline-hidden md:mt-0 lg:w-2/5">
           <button
             class={["w-full rounded-lg bg-slate-900 px-3 py-2 uppercase hover:bg-slate-950 phx-submit-loading:opacity-75", "text-sm font-semibold leading-6 text-white active:text-white/80"]}
             phx-disable-with="Creating..."
@@ -95,7 +95,7 @@
       </div>
     </.form>
 
-    <div :if={@result} class="mt-4 w-full space-x-8 rounded-md p-2 text-sm outline-none">
+    <div :if={@result} class="mt-4 w-full space-x-8 rounded-md p-2 text-sm outline-hidden">
       <a class="text-lg underline" href={@result.link}>
         {String.split(@result.link, "://") |> Enum.at(1)}
       </a>

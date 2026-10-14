@@ -307,7 +307,7 @@ defmodule EstevaoWeb.CoreComponents do
           name={@name}
           value="true"
           checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
+          class="rounded-sm border-zinc-300 text-zinc-900 focus:ring-0"
           {@rest}
         />
         {@label}
@@ -324,7 +324,7 @@ defmodule EstevaoWeb.CoreComponents do
       <select
         id={@id}
         name={@name}
-        class="mt-2 block w-full rounded-md border border-gray-300 bg-white shadow-sm focus:border-zinc-400 focus:ring-0 sm:text-sm"
+        class="shadow-xs mt-2 block w-full rounded-md border border-gray-300 bg-white focus:border-zinc-400 focus:ring-0 sm:text-sm"
         multiple={@multiple}
         {@rest}
       >
@@ -560,7 +560,7 @@ defmodule EstevaoWeb.CoreComponents do
   width, height, and background color classes.
 
   Icons are extracted from the `deps/heroicons` directory and bundled within
-  your compiled app.css by the plugin in your `assets/tailwind.config.js`.
+  your compiled app.css by the plugin in `assets/vendor/heroicons.js`.
 
   ## Examples
 
