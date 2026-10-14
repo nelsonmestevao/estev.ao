@@ -15,8 +15,6 @@ cd "${BASE_DIR}/.." || exit 127
 PROGRAM=$(basename "${BASH_SOURCE[0]:-$0}")
 VERSION=0.16.0
 
-KAMAL_BIN="$(ruby -e 'puts Gem.user_dir + "/bin/kamal"')"
-
 function display_help() {
   cat <<EOF
   This is a wrapper for the Kamal CLI, ensuring it runs from your user gem installation.
@@ -42,11 +40,6 @@ case "${1:-}" in
     ;;
 esac
 
-if [[ ! -x "$KAMAL_BIN" ]]; then
-  log_error "executable not found at $KAMAL_BIN"
-  exit 1
-fi
-
 load_env_file .env
 
-exec "$KAMAL_BIN" "$@"
+kamal "$@"

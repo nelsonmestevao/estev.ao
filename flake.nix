@@ -31,7 +31,7 @@
             #   languageServers.erlang = false;
             phoenix = true;
             extraPackages = with pkgs; [
-              ruby_4_0
+              kamal
             ];
           };
           versions = {
