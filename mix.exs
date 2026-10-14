@@ -68,7 +68,7 @@ defmodule Estevao.MixProject do
       {:finch, "~> 0.13"},
 
       # i18n
-      {:gettext, "~> 0.20"},
+      {:gettext, "~> 1.0"},
 
       # utilities
       {:jason, "~> 1.2"},
@@ -76,7 +76,7 @@ defmodule Estevao.MixProject do
       {:ex_toolkit, "~> 0.12.4"},
 
       # clustering
-      {:dns_cluster, "~> 0.2.0"},
+      {:dns_cluster, "~> 0.3.0"},
 
       # monitoring
       {:telemetry_metrics, "~> 1.0"},
