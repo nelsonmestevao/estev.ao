@@ -91,7 +91,7 @@ defmodule Estevao.MixProject do
        github: "tailwindlabs/heroicons", tag: "v2.1.4", sparse: "optimized", app: false, compile: false, depth: 1},
 
       # development
-      {:testcontainers, "~> 2.1", only: [:test, :dev]},
+      {:testcontainers, "~> 2.4", only: [:test, :dev]},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
 
       # testing
