@@ -49,9 +49,9 @@ defmodule Estevao.MixProject do
   defp deps do
     [
       # web
-      {:phoenix, "~> 1.7.14"},
+      {:phoenix, "~> 1.8.15"},
       {:phoenix_html, "~> 4.1"},
-      {:phoenix_live_view, "~> 1.0.0-rc.7", override: true},
+      {:phoenix_live_view, "~> 1.2.12"},
       {:bandit, "~> 1.5"},
 
       # graphql
@@ -81,7 +81,7 @@ defmodule Estevao.MixProject do
       # monitoring
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
-      {:phoenix_live_dashboard, "~> 0.8.3"},
+      {:phoenix_live_dashboard, "~> 0.9.1"},
       {:ecto_psql_extras, "~> 0.8.0"},
 
       # assets
@@ -95,7 +95,7 @@ defmodule Estevao.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
 
       # testing
-      {:floki, ">= 0.30.0", only: :test},
+      {:lazy_html, ">= 0.1.0", only: :test},
 
       # tools
       {:igniter, "~> 0.5", only: [:dev, :test]},
